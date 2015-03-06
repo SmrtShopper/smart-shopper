@@ -17,6 +17,8 @@ Smart Shopper
 
 4. Features: 
   - Persistent storage of a person’s data
+  - Client-side storage of user's shopping list so she can leave the webpage and come back to find
+    her cart still there
   - Mobile and web optimized sites
   - Voice recognition - some type of input to start listening, adds to grocery list
   - Email notifications about expiring goods (milk, fruit, eggs, etc.)
