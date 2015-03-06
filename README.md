@@ -19,7 +19,7 @@ much simpler and more enjoyable (and less prone to error with forgetting about i
 - Mobile and web optimized sites
 - Voice recognition - some type of input to start listening, adds to grocery list
 - Email notifications about expiring goods (milk, fruit, eggs, etc.)
-either use average age of products or allow user to input expiration date
+  either use average age of products or allow user to input expiration date
 - Reporting of money spent on groceries using charts and graphs
 - Distribution of money spent on different types of goods
 - Money spent over time
@@ -31,7 +31,7 @@ Pick Five:
 - Send emails, SMSes, or push notifications
 5. Data
 - Mock data will be used to store the groceries and their corresponding 
-  prices/average dates of expiration/etc.
+prices/average dates of expiration/etc.
 6. Algorithms
 - We will have a database containing average ages of grocery products and 
 product prices that will be searched whenever a new grocery item is added. 
