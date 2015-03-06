@@ -1,19 +1,19 @@
 # comp20-spring2015-team9
-1. Title: Smart Shopper
+
+Smart Shopper
 
 2. Problem Statement: 
-
-   Grocery lists should be more than just todo lists. By making a dynamic grocery 
-  list that is both mobile and desktop facing, it is possible to create a new user 
-  experience where grocery lists aid in reminding about foods that are expiring (like milk), 
-  reveal nutrition facts about and prices of food, or even enable group sharing for a family 
-  or group of friends. 
+   - Grocery lists should be more than just todo lists. By making a dynamic grocery 
+      list that is both mobile and desktop facing, it is possible to create a new user 
+      experience where grocery lists aid in reminding about foods that are expiring (like milk), 
+      reveal nutrition facts about and prices of food, or even enable group sharing for a family 
+      or group of friends. 
 
 3. Solution: 
-  We are going to create a product which implements a 
-  number of features to improve the efficiency and utility of grocery lists.  
-  A more full-featured grocery list will make the experience of shopping regularly 
-  much simpler and more enjoyable (and less prone to error with forgetting about items expiring).
+  - We are going to create a product which implements a 
+      number of features to improve the efficiency and utility of grocery lists.  
+      A more full-featured grocery list will make the experience of shopping regularly 
+      much simpler and more enjoyable (and less prone to error with forgetting about items expiring).
 
 4. Features: 
   - Persistent storage of a person’s data
@@ -35,11 +35,11 @@ Pick Five:
     prices/average dates of expiration/etc.
 6. Algorithms
   - We will have a database containing average ages of grocery products and 
-  product prices that will be searched whenever a new grocery item is added. 
+      product prices that will be searched whenever a new grocery item is added. 
   - Using a database language that allows for a fast (ie: hashed) searching we 
-  will be able to retrieve expiration dates quickly. 
+      will be able to retrieve expiration dates quickly. 
   - If we do not have an expiration date or price we will ask the user if 
-  they wish to add one at which point we will take their expiration
+      they wish to add one at which point we will take their expiration
 
 7. Mockups
 
