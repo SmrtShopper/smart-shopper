@@ -44,8 +44,10 @@ Pick Five:
 7. Mockups
 ![](/wireframes/wireframe_desktop_1.png)
 Main (Desktop) View
+
 ![](/wireframes/wireframe_desktop_2.png)
 Grocery List (Desktop) View
-![](/wireframes/wireframe_mobile_1.png)
+
+![](/wireframes/wireframe_mobile.png)
 Main (Mobile) View
 
