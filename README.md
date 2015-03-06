@@ -42,5 +42,5 @@ Pick Five:
       they wish to add one at which point we will take their expiration
 
 7. Mockups
-![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
+![](Wireframe Desktop 1.png)
 
