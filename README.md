@@ -42,5 +42,10 @@ Pick Five:
       they wish to add one at which point we will take their expiration
 
 7. Mockups
-![](Wireframe Desktop 1.png)
+![](/wireframes/wireframe_desktop_1.png)
+Main (Desktop) View
+![](/wireframes/wireframe_desktop_2.png)
+Grocery List (Desktop) View
+![](/wireframes/wireframe_mobile_1.png)
+Main (Mobile) View
 
