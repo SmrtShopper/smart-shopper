@@ -54,3 +54,8 @@ Grocery List (Desktop) View
 ![](/wireframes/wireframe_mobile.png)
 Main (Mobile) View
 
+#Comments by Ming
+1. Whoa there!  WAAAAAY too many features.  You will be lucky to finish two of them well.
+2. Voice recognition --how the heck will you do this?
+3. What APIs will you be using?
+4. Overall: 12/15
