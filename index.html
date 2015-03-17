@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="smartShopper">
+<head>
+	<title>Smart Shopper</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+
+	<div ng-controller="ListController as list">
+		<h1> Grocery List </h1>
+		<p> {{list.product.description}} </p>
+		<p> {{list.product.price}} </p>
+	</div>
+</body>
+
+</html>
