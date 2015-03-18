@@ -17,7 +17,6 @@
 </head>
 <body>
 	<script type="text/javascript" src="angular.min.js"></script>
-	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="item.js"></script>
     <div class = "grocery_widget">
         <div class="panel panel-default">
@@ -30,9 +29,14 @@
                 <li ng-repeat="item in items">
                   <input type="checkbox">
                   <span>{{item.description}}</span>
-                   <span class = "badge">${{item.price}}</span>
+                   <span class = "bought-{{item.bought}}"><span class = "badge">${{item.price}}</span></span>
                 </li>
               </ul>
+            <form ng-submit="addItem()">
+              <input type="text" ng-model="groceryItem"  size="30"
+               placeholder="buy me">
+             <input class="btn-primary" type="submit" value="add">
+            </form>
             </div>
             </div>
         </div>

@@ -2,3 +2,11 @@
     left: 50%;
     float:left; 
 }
+
+li {
+ list-style: none;   
+}
+
+.badge .bought-true  {
+ background-color: green;   
+}
