@@ -5,7 +5,7 @@ angular.module('smartShopper', [])
       {description:'milk', price:3.49, bought: false, aisle: 5}];
     $scope.addItem = function() {
         $scope.items.push({description: document.getElementById("grocItem").value, price:1000000, bought: false});
-        $scope.groceryItem = '';
+        document.getElementById("grocItem").value = '';
     };
     $scope.voiceRec = function(){
     var recognition = new webkitSpeechRecognition();
