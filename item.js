@@ -12,7 +12,8 @@ angular.module('smartShopper', [])
     recognition.onresult = function(event) { 
       console.log(event) 
       if (event.results[0].isFinal) {
-      document.getElementById("grocItem").value = event.results[0][0].transcript;
+      //document.getElementById("grocItem").value = event.results[0][0].transcript;
+          $scope.items.push({description: event.results[0][0].transcript, price:1000000, bought: false});
       }
     }
     recognition.onerror = function(event){
