@@ -12,7 +12,7 @@ angular.module('smartShopper', [])
     var recognition = new webkitSpeechRecognition();
     recognition.onresult = function(event) { 
       console.log(event) 
-      if (event.results[i].isFinal) {
+      if (event.results[0].isFinal) {
       document.getElementById("grocItem").value = event.results[0][0].transcript;
       }
     }
