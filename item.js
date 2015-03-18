@@ -13,6 +13,7 @@ function voiceRec(){
     var recognition = new webkitSpeechRecognition();
     recognition.onresult = function(event) { 
       console.log(event) 
+      document.getElementById("grocItem").value=event.results[0][0].transcript;
     }
     recognition.onerror = function(event){
         console.log("Error", event);   
