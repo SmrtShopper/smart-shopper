@@ -8,7 +8,6 @@ angular.module('smartShopper', [])
         $scope.groceryItem = '';
     };
     $scope.voiceRec = function(){
-    console.log("here");
     var recognition = new webkitSpeechRecognition();
     recognition.onresult = function(event) { 
       console.log(event) 
