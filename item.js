@@ -8,3 +8,14 @@ angular.module('smartShopper', [])
         $scope.groceryItem = '';
     };
   }]);
+
+function voiceRec(){
+    var recognition = new webkitSpeechRecognition();
+    recognition.onresult = function(event) { 
+      console.log(event) 
+    }
+    recognition.onerror = function(event){
+        console.log("Error", event);   
+    }
+    recognition.start();
+}
