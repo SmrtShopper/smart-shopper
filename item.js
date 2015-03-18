@@ -1,6 +1,6 @@
-angular.module('groceries', [])
+angular.module('smartShopper', [])
   .controller('GroceryController', ['$scope', function($scope) {
-    $scope.groceries = [
+    $scope.items = [
       {description:'ice cream', price:14.95},
-      {description:'apples', price:0.55}];
-  };
+      {description:'milk', price:3.49}];
+  }]);
