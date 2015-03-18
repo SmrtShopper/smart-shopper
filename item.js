@@ -7,17 +7,17 @@ angular.module('smartShopper', [])
         $scope.items.push({description: $scope.groceryItem, price:1000000, bought: false});
         $scope.groceryItem = '';
     };
-  }]);
-
-function voiceRec(){
+    $scope.voiceRec = function(){
+    console.log("here");
     var recognition = new webkitSpeechRecognition();
     recognition.onresult = function(event) { 
       console.log(event) 
-      document.getElementById("grocItem").value = "HEYYY";
-     
+      document.getElementById("grocItem").value = event.result[0];
     }
     recognition.onerror = function(event){
         console.log("Error", event);   
     }
     recognition.start();
-}
+    };
+  }]);
+

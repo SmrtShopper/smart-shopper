@@ -25,10 +25,7 @@
           </div>
           <div class="panel-body">
             <div ng-controller="GroceryController">
-                <p>Voice Recognition</p>
-                <script>
-                   voiceRec();
-                </script>
+               
                <ul class="unstyled">
                 <li>
                     <span class = "badge demo-badge">
@@ -47,6 +44,7 @@
               <input type="text" ng-model="groceryItem"  size="30"
                placeholder="buy me" id = "grocItem">
              <input class="btn-primary" type="submit" value="add">
+             <a ng-click='voiceRec()' ><span class = "glyphicon glyphicon glyphicon-record"></span></a>
             </form>
             </div>
             </div>
