@@ -7,12 +7,17 @@
 <body>
 	<script type="text/javascript" src="angular.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
-
-	<div ng-controller="ListController as list">
-		<h1> Grocery List </h1>
-		<p> {{list.product.description}} </p>
-		<p> {{list.product.price}} </p>
-	</div>
+	<script type="text/javascript" src="todo.js"></script>
+    
+    <div ng-controller="GroceryController">
+       <ul class="unstyled">
+        <li ng-repeat="item in items">
+          <input type="checkbox">
+          <span>{{item.description}}</span>
+           <span class = "badge">${{item.price}}</span>
+        </li>
+      </ul>
+    </div>
 </body>
 
 </html>
