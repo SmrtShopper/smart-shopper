@@ -18,6 +18,12 @@ Pages
 	- things to eat
 	- things to stay away from
 
+Objects
+- grocery list items
+	- name
+	- frequency of purchase
+	- category
+
 Data structures
 - hash for emails/passwords
 
@@ -28,6 +34,7 @@ Frameworks
 
 APIs
 - Nutrition API
+	- get food info and parse data on front end
 
 Libraries
 - chart.js?
