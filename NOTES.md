@@ -1,5 +1,7 @@
 *Notes*
 
+
+
 Pages
 - Sign up
 	- email and password
@@ -34,8 +36,11 @@ Frameworks
 
 APIs
 - Nutrition API
+	- username: mseltzer; password: grocery
 	- get food info and parse data on front end
 
 Libraries
 - chart.js?
 - d3.js?
+
+Recipe integration?
