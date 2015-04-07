@@ -1,0 +1,23 @@
+{
+  "name": "comp20-spring2015-team9",
+  "version": "1.0.0",
+  "description": "Smart Shopper",
+  "main": "angular.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuftsdev/comp20-spring2015-team9.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuftsdev/comp20-spring2015-team9/issues"
+  },
+  "homepage": "https://github.com/tuftsdev/comp20-spring2015-team9",
+  "dependencies": {
+    "bootswatch": "^3.3.4",
+    "jquery": "^2.1.3"
+  }
+}
