@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="smartShopper">
 <head>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="desktop.css">
-    <nav class="navbar navbar-default">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap -->
+	<!--<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" /> -->
+  <link href="node_modules/bootswatch/flatly/bootstrap.min.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="desktop.css">
+    
+</head>
+<body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!--
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  -->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="item.js"></script>
+  <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
        
@@ -13,43 +30,39 @@
       </a>
     </div>
   </div>
-</nav>
-</head>
-<body>
-	<script type="text/javascript" src="angular.min.js"></script>
-	<script type="text/javascript" src="item.js"></script>
-    <div class = "grocery_widget">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Grocery List</h3>
-          </div>
-          <div class="panel-body">
-            <div ng-controller="GroceryController">
-               
-               <ul class="unstyled">
-                <li>
-                    <span class = "badge demo-badge">
-                            <span class = "badge badge-bought-true">bought</span>
-                            <span class = "badge badge-aisle">aisle</span>
-                        </span>
-                   </li>
-                <li ng-repeat="item in items">
-                  <input type="checkbox" ng-model=item.bought>
-                  <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
-                   <span class = "badge badge-bought-{{item.bought}}">${{item.price}}</span>
-                    <span class = "badge badge-aisle">{{item.aisle}}</span>
-                </li>
-              </ul>
-            <form ng-submit="addItem()">
-              <input type="numbers" ng-model="groceryItem"  size="30"
-               placeholder="buy me" id = "grocItem">
-             <input class="btn-primary" type="submit" value="add">
-             <a ng-click='voiceRec()' > <span class = "glyphicon glyphicon glyphicon-record"></span></a>
-            </form>
-            </div>
-            </div>
+  </nav>
+  <div class = "grocery_widget">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Grocery List</h3>
+      </div>
+      <div class="panel-body">
+        <div ng-controller="GroceryController">
+           
+           <ul class="unstyled">
+            <li>
+                <span class = "badge demo-badge">
+                        <span class = "badge badge-bought-true">bought</span>
+                        <span class = "badge badge-aisle">aisle</span>
+                    </span>
+               </li>
+            <li ng-repeat="item in items">
+              <input type="checkbox" ng-model=item.bought>
+              <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
+               <span class = "badge badge-bought-{{item.bought}}">${{item.price}}</span>
+                <span class = "badge badge-aisle">{{item.aisle}}</span>
+            </li>
+          </ul>
+        <form ng-submit="addItem()">
+          <input type="text" ng-model="groceryItem"  size="30"
+           placeholder="buy me" id = "grocItem">
+         <input class="btn-primary" type="submit" value="add">
+         <a ng-click='voiceRec()' > <span class = "glyphicon glyphicon glyphicon-record"></span></a>
+        </form>
         </div>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>
