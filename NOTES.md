@@ -38,9 +38,11 @@ APIs
 - Nutrition API
 	- username: mseltzer; password: grocery
 	- get food info and parse data on front end
+- Facebook login API
 
 Libraries
 - chart.js?
 - d3.js?
 
 Recipe integration?
+Include in README why we chose not to use user input for grocery items
