@@ -1,3 +1,11 @@
+.container {
+	max-width: 980px;
+	margin: 20px auto;
+}
+#grocery_widget {
+	margin: 40px auto 60px;
+}
+
 li {
     list-style: none;   
 }
