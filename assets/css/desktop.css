@@ -1,10 +1,10 @@
-.grocery_widget {
-    left: 50%;
-    float:left; 
+.container {
+	max-width: 980px;
+	margin: 20px auto;
 }
 
-li {
-    list-style: none;   
+#record_button {
+	right: 50px;
 }
 
 .demo-badge {
