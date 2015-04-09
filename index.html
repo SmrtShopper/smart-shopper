@@ -40,9 +40,14 @@
           <button class="btn btn-default" type="submit">Go!</button>
         </span>
         <form ng-submit="addItem()">
-          <button type="button" class="btn btn-default" aria-label="Left Align">
+          <button type="button" class="btn btn-default" id="record_button" aria-label="Left Align">
             <span ng-click='voiceRec()' > <span class = "glyphicon glyphicon-record"></span> Voice input</span>
           </button>
+          <script type="text/javascript">
+            if (navigator.userAgent.indexOf("Chrome") == -1) {
+              $("#record_button").hide();
+            }
+          </script>
         </form>
       </form>
     </li>
