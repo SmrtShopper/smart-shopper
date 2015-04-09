@@ -30,38 +30,36 @@
     </div>
   </div>
   </nav>
-  <div class = "grocery_widget">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Grocery List</h3>
+  <ul class = "grocery_widget list-group col-lg-6" ng-controller="GroceryController" >
+    <li class= "list-group-item active">Grocery List</li>
+    <li class= "list-group-item"> <!-- Search bar -->
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
       </div>
-      <div class="panel-body">
-        <div ng-controller="GroceryController">
-           
-           <ul class="unstyled">
-            <li>
-                <span class = "badge demo-badge">
-                        <span class = "badge badge-bought-true">bought</span>
-                        <span class = "badge badge-aisle">aisle</span>
-                    </span>
-               </li>
-            <li ng-repeat="item in items">
-              <input type="checkbox" ng-model=item.bought>
-              <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
-               <span class = "badge badge-bought-{{item.bought}}">${{item.price}}</span>
-                <span class = "badge badge-aisle">{{item.aisle}}</span>
-            </li>
-          </ul>
-        <form ng-submit="addItem()">
-          <input type="tel" ng-model="groceryItem"  size="30"
-           placeholder="buy me" id = "grocItem">
-         <input class="btn-primary" type="submit" value="add">
-         <a ng-click='voiceRec()' > <span class = "glyphicon glyphicon glyphicon-record"></span></a>
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
+    </li>
+    <li class= "list-group-item" ng-repeat="item in items">
+      <!--
+        <li>
+            <span class = "badge demo-badge">
+                    <span class = "badge badge-bought-true">bought</span>
+                    <span class = "badge badge-aisle">aisle</span>
+                </span>
+           </li>
+         -->
+        <input type="checkbox" ng-model=item.bought>
+        <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
+        <span class = "badge badge-bought-{{item.bought}}">${{item.price}}</span>
+        <span class = "badge badge-aisle">{{item.aisle}}</span>
+    </li>
+  </ul>
+  <form ng-submit="addItem()">
+    <input type="tel" ng-model="groceryItem"  size="30" placeholder="buy me" id = "grocItem">
+    <input class="btn-primary" type="submit" value="add">
+    <a ng-click='voiceRec()' > <span class = "glyphicon glyphicon glyphicon-record"></span></a>
+  </form>
 </body>
 
 </html>
