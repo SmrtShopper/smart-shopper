@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />
-  
+
   <link rel="stylesheet" type="text/css" href="assets/css/desktop.css">
     
 </head>
@@ -45,7 +45,9 @@
         <form class="input-group" ng-submit="addItem()">
           
           <input type="text" class="form-control" ng-model="groceryItem" id = "grocItem" placeholder="Search for...">
-          <i class="glyphicon glyphicon-record form-control-feedback" id="record_button" ng-click='voiceRec()' ng-submit="addItem()"></i>
+          <a class="form-control-feedback" id="record_button" ng-click="voiceRec()" ng-submit="addItem()">
+            <i class="glyphicon glyphicon-record"></i>
+          </a>
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Go!</button>
           </span>
