@@ -9,6 +9,10 @@
 	pointer-events: auto;
 }
 
+.glyphicon-remove {
+	padding-left: 20px;
+}
+
 
 /* enable absolute positioning */
 .inner-addon { 
