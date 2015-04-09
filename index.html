@@ -43,6 +43,11 @@
           </div>
           <button class="btn btn-default pull-right" type="submit">Add</button>
 
+          <script type="text/javascript">
+            if (navigator.userAgent.indexOf("Chrome") == -1) {
+              $("#record_button").hide();
+            }
+          </script>
           <!--
 
           <div ng-submit="addItem()">
