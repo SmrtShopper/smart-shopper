@@ -1,10 +1,10 @@
 angular.module('smartShopper', [])
   .controller('GroceryController', ['$scope', function($scope) {
     $scope.items = [
-      {description:'ice cream', price:14.95, bought: true, aisle: 3},
-      {description:'milk', price:3.49, bought: false, aisle: 5}];
+      {description:'ice cream', bought: true, quantity: 3},
+      {description:'milk', bought: false, quantity: 5}];
     $scope.addItem = function() {
-        $scope.items.push({description: document.getElementById("grocItem").value, price:1000000, bought: false});
+        $scope.items.push({description: document.getElementById("grocItem").value, bought: false});
         document.getElementById("grocItem").value = '';
     };
     $scope.voiceRec = function(){

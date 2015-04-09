@@ -61,8 +61,7 @@
       <li class= "list-group-item" ng-repeat="item in items">
           <input type="checkbox" ng-model=item.bought>
           <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
-          <span class = "badge badge-bought-{{item.bought}}">${{item.price}}</span>
-          <span class = "badge badge-aisle">{{item.aisle}}</span>
+          <span class = "badge badge_quantity">{{item.quantity}}</span>
       </li>
     </ul>
   </div>
