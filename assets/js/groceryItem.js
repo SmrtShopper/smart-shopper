@@ -3,8 +3,8 @@ angular.module('smartShopper', [])
     $scope.items = [
       {description:'ice cream', bought: true, quantity: 3},
       {description:'milk', bought: false, quantity: 5}];
-    $scope.addItem = function() {
-        $scope.items.push({description: document.getElementById("grocItem").value, bought: false});
+    $scope.prependItem = function() {
+        $scope.items.unshift({description: document.getElementById("grocItem").value, bought: false});
         document.getElementById("grocItem").value = '';
     };
     $scope.voiceRec = function(){
