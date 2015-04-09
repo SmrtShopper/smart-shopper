@@ -33,15 +33,18 @@
   <ul class = "grocery_widget list-group col-md-3" ng-controller="GroceryController" >
     <li class= "list-group-item active">Grocery List</li>
     <li class= "list-group-item"> <!-- Search bar -->
-      <div class="input-group" ng-submit="addItem()">
+      <form class="input-group" ng-submit="addItem()">
         
         <input type="text" class="form-control" ng-model="groceryItem" id = "grocItem" placeholder="Search for...">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Go!</button>
+          <button class="btn btn-default" type="submit">Go!</button>
         </span>
-        <button type="button" class="btn btn-default" aria-label="Left Align">
-          <a ng-click='voiceRec()' > <span class = "glyphicon glyphicon-record"></span> Voice input</a>
-        </button>
+        <form ng-submit="addItem()">
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span ng-click='voiceRec()' > <span class = "glyphicon glyphicon-record"></span> Voice input</span>
+          </button>
+        </form>
+      </form>
     </li>
     <li class= "list-group-item" ng-repeat="item in items">
       <!--
