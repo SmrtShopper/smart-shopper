@@ -3,9 +3,12 @@
 	margin: 20px auto;
 }
 
+
+
 #record_button {
 	pointer-events: auto;
 }
+
 
 /* enable absolute positioning */
 .inner-addon { 
