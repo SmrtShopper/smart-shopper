@@ -2,7 +2,12 @@ angular.module('smartShopper', [])
   .controller('GroceryController', ['$scope', function($scope) {
     $scope.items = [
       {description:'ice cream', bought: true, quantity: 3},
-      {description:'milk', bought: false, quantity: 5}];
+      {description:'milk', bought: false, quantity: 5}
+    ];
+    $scope.searchResults = [
+      {description: 'cheese'},
+      {description: 'broccoli'}
+    ];
     $scope.prependItem = function() {
       $scope.items.unshift({description: document.getElementById("grocItem").value, bought: false});
       document.getElementById("grocItem").value = '';
