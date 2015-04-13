@@ -7,6 +7,9 @@ angular.module('smartShopper', [])
       $scope.items.unshift({description: document.getElementById("grocItem").value, bought: false});
       document.getElementById("grocItem").value = '';
     };
+    $scope.deleteItem = function(idx) {
+        $scope.items.splice(idx, 1);
+    };
 
 
     $scope.voiceRec = function(){
