@@ -1,6 +1,6 @@
 angular.module('smartShopper', [])
   .controller('GroceryController', ['$scope', function($scope) {
-    var login = 1;
+    var login = 2;
     $scope.items = [
       {description:'ice cream', price:14.95, bought: true, aisle: 3},
       {description:'milk', price:3.49, bought: false, aisle: 5}];
@@ -12,10 +12,11 @@ angular.module('smartShopper', [])
           req.open("POST", url, true);
           req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           req.send(params);
-          req.onreadystatechange = function() {
-              if(req.readyState == 4 && req.status == 200) {
-                  
-              }
+          alert("hello");
+          alert(req.response);
+          if (req.status!=200){
+            alert('Send failed');
+          }
           
           $scope.items.push({description: document.getElementById("grocItem").value, price:1000000, bought: false});
           document.getElementById("grocItem").value = '';
