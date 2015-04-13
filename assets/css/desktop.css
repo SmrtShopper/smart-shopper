@@ -9,6 +9,10 @@
 	pointer-events: auto;
 }
 
+#delete_button {
+  pointer-events: auto;
+}
+
 .glyphicon-remove {
 	padding-left: 20px;
 }

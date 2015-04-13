@@ -21,6 +21,9 @@ angular.module('smartShopper', [])
           $scope.items.push({description: document.getElementById("grocItem").value, price:1000000, bought: false});
           document.getElementById("grocItem").value = '';
     };
+    $scope.deleteItem = function() {
+        alert("HI");
+    };
     $scope.voiceRec = function(){
         
     var recognition = new webkitSpeechRecognition();
