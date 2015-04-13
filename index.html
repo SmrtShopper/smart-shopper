@@ -38,10 +38,10 @@
       <li class= "list-group-item"> <!-- Search bar -->
         <form class="form-inline" ng-submit="prependItem()">
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" ng-submit="addItem()" placeholder="Search">
+            <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search">
               <i id="record_button" class="form-control-feedback glyphicon glyphicon-record" ng-click="voiceRec()"></i>
           </div>
-          <button class="btn btn-default pull-right" type="submit">Add</button>
+          <button class="btn btn-default pull-right" type="submit">Search</button>
 
           <script type="text/javascript">
             if (navigator.userAgent.indexOf("Chrome") == -1) {
@@ -51,6 +51,7 @@
         </form>
       </li>
       <li class= "list-group-item" ng-repeat="result in searchResults">
+        <button class="btn btn-xs pull-right" type="submit">Add</button>
         <span class = "item-bought-false">{{result.description}}</span>
       </li>
     </ul>
