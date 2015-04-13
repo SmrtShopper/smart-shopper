@@ -1,11 +1,40 @@
-.grocery_widget {
-    left: 50%;
-    float:left; 
+.container {
+	max-width: 980px;
+	margin: 20px auto;
 }
 
-li {
-    list-style: none;   
+
+
+#record_button {
+	pointer-events: auto;
 }
+
+.glyphicon-remove {
+	padding-left: 20px;
+}
+
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  /*pointer-events: none; */
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
 
 .demo-badge {
     background-color: #e3e3e3;   
@@ -19,6 +48,6 @@ li {
 }
 
 
-.badge-aisle {
+.badge_quantity {
     background-color: #8206ff;   
 }

@@ -6,74 +6,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />
-  <!--<link href="node_modules/bootswatch/flatly/bootstrap.min.css" type="text/css" rel="stylesheet" />-->
+
   <link rel="stylesheet" type="text/css" href="assets/css/desktop.css">
     
 </head>
 <body>
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script> -->
   <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="angular.min.js"></script>
-	<script type="text/javascript" src="assets/js/groceryItem.js"></script>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-       
-      <a class="navbar-brand" href="#">
-          Smart Shopper
-          <span class = "glyphicon glyphicon-shopping-cart"></span>
-      </a>
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/groceryItem.js"></script>
+
+
+  <nav class="navbar navbar-default" >
+    <div class="container-fluid">
+      <div class="navbar-header">
+         
+        <a class="navbar-brand" href="#">
+            <span class = "glyphicon glyphicon-shopping-cart"></span>
+            Smart Shopper
+        </a>
+      </div>
     </div>
-  </div>
-  </nav>
-  <ul class = "grocery_widget list-group col-md-3" ng-controller="GroceryController" >
-    <li class= "list-group-item active">Grocery List</li>
-    <li class= "list-group-item"> <!-- Search bar -->
-      <form class="input-group" ng-submit="addItem()">
-        
-        <input type="text" class="form-control" ng-model="groceryItem" id = "grocItem" placeholder="Search for...">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="submit">Go!</button>
-        </span>
-        <form ng-submit="addItem()">
-          <button type="button" class="btn btn-default" id="record_button" aria-label="Left Align">
-            <span ng-click='voiceRec()' > <span class = "glyphicon glyphicon-record"></span> Voice input</span>
-          </button>
+  </nav>  
+
+  <div class="container">
+
+    
+    <ul class = "list-group col-xs-12 col-md-6 col-md-offset-3" id="grocery_widget" ng-controller="GroceryController" >
+      <li class= "list-group-item active">Grocery List</li>
+      <li class= "list-group-item"> <!-- Search bar -->
+        <form class="form-inline" ng-submit="prependItem()">
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" ng-submit="addItem()" placeholder="Search">
+              <i id="record_button" class="form-control-feedback glyphicon glyphicon-record" ng-click="voiceRec()"></i>
+          </div>
+          <button class="btn btn-default pull-right" type="submit">Add</button>
+
           <script type="text/javascript">
             if (navigator.userAgent.indexOf("Chrome") == -1) {
               $("#record_button").hide();
             }
           </script>
-        </form>
-      </form>
-    </li>
-    <li class= "list-group-item" ng-repeat="item in items">
-      <!--
-        <li>
-            <span class = "badge demo-badge">
-                    <span class = "badge badge-bought-true">bought</span>
-                    <span class = "badge badge-aisle">aisle</span>
-                </span>
-           </li>
-         -->
-        <input type="checkbox" ng-model=item.bought>
-        <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
-        <span class = "badge badge-bought-{{item.bought}}">${{item.price}}</span>
-        <span class = "badge badge-aisle">{{item.aisle}}</span>
-    </li>
-  </ul>
+          <!--
 
-  <!--
-  <form ng-submit="addItem()">
-    <input type="tel" ng-model="groceryItem"  size="30" placeholder="buy me" id = "grocItem">
-    <input class="btn-primary" type="submit" value="add">
-    <a ng-click='voiceRec()' > <span class = "glyphicon glyphicon glyphicon-record"></span></a>
-  </form>
-  -->
+          <div ng-submit="addItem()">
+            <button type="button" class="btn btn-default" id="record_button" aria-label="Left Align">
+              <span ng-click='voiceRec()' > <span class = "glyphicon glyphicon-record"></span> Voice input</span>
+            </button>
+            <script type="text/javascript">
+              if (navigator.userAgent.indexOf("Chrome") == -1) {
+                $("#record_button").hide();
+              }
+            </script>
+          </div>
+        -->
+        </form>
+      </li>
+      <li class= "list-group-item" ng-repeat="item in items">
+          <input type="checkbox" ng-model=item.bought>
+          <i class="glyphicon glyphicon-remove pull-right"></i>
+          <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
+          <span class = "badge badge_quantity">{{item.quantity}}</span>
+          
+      </li>
+    </ul>
+  </div>
+
+
+
 </body>
 
 </html>
