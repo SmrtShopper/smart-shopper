@@ -42,4 +42,3 @@ angular.module('smartShopper', [])
     recognition.start();
     };
   }]);
-
