@@ -13,7 +13,7 @@ angular.module('smartShopper', [])
       document.getElementById("grocItem").value = '';
     };
     $scope.deleteItem = function(idx) {
-        $scope.items.splice(idx, 1);
+      $scope.items.splice(idx, 1);
     };
 
 

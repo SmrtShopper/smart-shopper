@@ -61,7 +61,7 @@
       <li class= "list-group-item active">Grocery List</li>
       <li class= "list-group-item" ng-repeat="item in items">
           <input type="checkbox" ng-model=item.bought>
-          <button class="glyphicon glyphicon-remove pull-right"></button>
+          <button class="glyphicon glyphicon-remove pull-right" ng-click = "deleteItem($index)"></button>
           <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
           <span class = "badge badge_quantity">{{item.quantity}}</span>
           
