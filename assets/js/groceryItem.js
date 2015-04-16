@@ -9,8 +9,12 @@ angular.module('smartShopper', [])
       {description: 'broccoli'}
     ];
     $scope.prependItem = function() {
-      $scope.items.unshift({description: document.getElementById("grocItem").value, bought: false});
+      var item_title = document.getElementById("grocItem").value;
+      if (item_title != "") {
+              $scope.items.unshift({description: item_title, bought: false});
       document.getElementById("grocItem").value = '';
+      }
+
     };
     $scope.deleteItem = function(idx) {
       $scope.items.splice(idx, 1);
