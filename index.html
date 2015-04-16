@@ -39,9 +39,11 @@
         <form class="form-inline" ng-submit="prependItem()">
           <div class="form-group has-feedback">
             <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search">
-              <i id="record_button" class="form-control-feedback glyphicon glyphicon-record" ng-click="voiceRec()"></i>
+              <img src="mic-01.png" id="record_button" class="form-control-feedback glyphicon" ng-click="voiceRec()">
           </div>
-          <button class="btn btn-default pull-right" type="submit">Search</button>
+          <button class="btn btn-default pull-right" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
 
           <script type="text/javascript">
             if (navigator.userAgent.indexOf("Chrome") == -1) {
@@ -61,7 +63,7 @@
       <li class= "list-group-item active">Grocery List</li>
       <li class= "list-group-item" ng-repeat="item in items">
           <input type="checkbox" ng-model=item.bought>
-          <button class="glyphicon glyphicon-remove pull-right" ng-click = "deleteItem($index)"></button>
+          <i class="glyphicon glyphicon-remove pull-right hover" ng-click = "deleteItem($index)"></i>
           <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
           <span class = "badge badge_quantity">{{item.quantity}}</span>
           

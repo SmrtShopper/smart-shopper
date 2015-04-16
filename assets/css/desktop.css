@@ -3,9 +3,15 @@
 	margin: 20px auto;
 }
 
-
+i.hover:hover {
+  color: #7E7E7E;
+}
 
 #record_button {
+
+  padding: 8px;
+  background-image: url("mic-01.png");
+
 	pointer-events: auto;
 }
 
