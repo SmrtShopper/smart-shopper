@@ -15,6 +15,7 @@
   width: auto;
   padding: 8px;
 	pointer-events: auto;
+  fill: #333;
 }
 
 #record_button:hover {
