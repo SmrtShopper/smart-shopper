@@ -3,16 +3,22 @@
 	margin: 20px auto;
 }
 
-i.hover:hover {
+.hover:hover {
   color: #7E7E7E;
 }
 
+
+
 #record_button {
 
+  height: 34px;
+  width: auto;
   padding: 8px;
-  background-image: url("mic-01.png");
-
 	pointer-events: auto;
+}
+
+#record_button:hover {
+  fill: #7E7E7E;
 }
 
 #delete_button {
