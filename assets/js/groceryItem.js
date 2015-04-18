@@ -23,52 +23,20 @@ angular.module('smartShopper', [])
       xmlhttp.setRequestHeader("X-APP-ID", appId);
       xmlhttp.setRequestHeader("X-APP-KEY", appKey);
       xmlhttp.setRequestHeader("Content-Type", "text/plain");
-      xmlhttp.send(query);
       xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          console.log(JSON.parse(xmlhttp.responseText).results);
-          $scope.items += JSON.parse(xmlhttp.responseText).results; 
+        if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          console.log(JSON.parse(xmlhttp.responseText).results[0]);
+          item = JSON.parse(xmlhttp.responseText).results[0]; 
+          $scope.items.unshift(item);
           $scope.$apply();
           console.log($scope.items);
+          localStorage.setItem("grocery", JSON.stringify($scope.items));
         }
       }
+     xmlhttp.send(query);
 
       document.getElementById("grocItem").value = '';
-    }
-
-    $scope.prependToList = function(idx) {
-      var item = $scope.searchResults[idx];
-
-      if ($scope.items.indexOf(item) == -1) {
-        $scope.items.unshift(item);
-      }
-      else {
-        alert("Oops, that's already in your list!");
-      }
-      localStorage.setItem("grocery", JSON.stringify($scope.items));
-
     };
-
-    $scope.prependItem = function() {
-      var item_title = document.getElementById("grocItem").value;
-      searchResults = search();
-      if (searchResults.length > 0) {
-        $scope.items.unshift({"fields": {"item_name": item_title}, bought: false});
-      }
-
-      document.getElementById("grocItem").value = '';
-
-      //localStorage.setItem("grocery", JSON.stringify($scope.items));
-
-    };
-
-    // $scope.prependItem = function() {
-    //   var item_title = document.getElementById("grocItem").value;
-    //   if (item_title != "") {
-    //           $scope.items.unshift({"fields": {"item_name": item_title}, "fields": {bought: false});
-    //   document.getElementById("grocItem").value = '';
-    //   }
-    // };
 
 
     $scope.deleteItem = function(idx) {
@@ -82,10 +50,7 @@ angular.module('smartShopper', [])
       recognition.onresult = function(event) { 
         console.log(event) 
         if (event.results[0].isFinal) {
-            //add to textbox
             document.getElementById("grocItem").value = event.results[0][0].transcript;
-            //auto add? probably don't want to do that
-            //$scope.items.push({description: $scope.groceryItem, price:1000000, bought: false});
         }
       }
       recognition.onerror = function(event){
