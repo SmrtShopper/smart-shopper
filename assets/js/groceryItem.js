@@ -40,12 +40,6 @@ angular.module('smartShopper', ["chart.js"])
       document.getElementById("grocItem").value = '';
     };
 
-    //charts
-    $(document).ready(function() {
-      var data = $scope.items[0];
-      var ctx = $("#modular-doughnut").get(0).getContext("2d");
-      var myDoughnutChart = new Chart(ctx).Doughnut(data);
-    });
     
     // console.log($scope.items);
     // var item = $scope.items[0];
