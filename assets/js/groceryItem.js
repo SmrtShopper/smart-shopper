@@ -10,7 +10,6 @@ angular.module('smartShopper', [])
     // ];
 
     $scope.items = JSON.parse(localStorage.getItem("grocery")) || [];
-    $scope.searchResults = [];
 
     $scope.search = function() {
       
@@ -47,15 +46,30 @@ angular.module('smartShopper', [])
       }
       localStorage.setItem("grocery", JSON.stringify($scope.items));
 
-    /*
+    };
+
     $scope.prependItem = function() {
       var item_title = document.getElementById("grocItem").value;
-      if (item_title != "") {
-              $scope.items.unshift({description: item_title, bought: false});
-      document.getElementById("grocItem").value = '';
+      searchResults = search();
+      if (searchResults.length > 0) {
+        $scope.items.unshift({"fields": {"item_name": item_title}, bought: false});
       }
-    */
+
+      document.getElementById("grocItem").value = '';
+
+      //localStorage.setItem("grocery", JSON.stringify($scope.items));
+
     };
+
+    // $scope.prependItem = function() {
+    //   var item_title = document.getElementById("grocItem").value;
+    //   if (item_title != "") {
+    //           $scope.items.unshift({"fields": {"item_name": item_title}, "fields": {bought: false});
+    //   document.getElementById("grocItem").value = '';
+    //   }
+    // };
+
+
     $scope.deleteItem = function(idx) {
       $scope.items.splice(idx, 1);
     };
