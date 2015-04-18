@@ -8,12 +8,15 @@ angular.module('smartShopper', ["chart.js"])
     //   {fields:{item_name: 'cheese'}},
     //   {fields:{item_name: 'broccoli'}}
     // ];
-
     $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
 
     $scope.search = function() {
-      
       var query = document.getElementById("grocItem").value;
+      $scope.getTotals(query);
+      document.getElementById("grocItem").value = '';
+    };
+
+    $scope.getTotals = function(query) {
       var allitemstr = query + "\n";
       if ($scope.alldata.results) {
         for (var i = 0; i < $scope.alldata.results.length; i++) {
@@ -22,7 +25,6 @@ angular.module('smartShopper', ["chart.js"])
       }
       
       console.log(allitemstr);
-      var items_to_return = 3;
       var appId = "feab83eb";
       var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
       //search Nutritionix for search results...
@@ -37,32 +39,29 @@ angular.module('smartShopper', ["chart.js"])
           alldata = JSON.parse(xmlhttp.responseText); 
           $scope.alldata = alldata;
           $scope.$apply();
+          document.getElementById("grocItem").value = '';
           console.log($scope.alldata.results);
+          $scope.updateGraphs();
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
 
       }
       xmlhttp.send(allitemstr);
-
-      // var allitemstr;
-      // for (var i = 0; i < $scope.items.length; i++) {
-      //   allitemstr += "\n" + $scope.items[i].parsed_query.food;
-      // }
-      //xmlhttp.onreadystatechange=function() 
-      
-      //xmlhttp.send(allitemstr);
-
-      //query = 
-      $scope.updateGraphs();
-
-
-      document.getElementById("grocItem").value = '';
-    };
+    }
 
     $scope.updateGraphs = function(){
+      console.log("updating Graphs!");
+      console.log($scope.alldata.total);
       var total = $scope.alldata.total;
       var labels = [];
       var data = [];
+
+      if (!total) {
+        //do something here to indicate no data and prompt to add data
+        var labels = ["No Data"];
+        var data = ["1"];
+        return;
+      }
 
 
       for (var i = 0; i < total.nutrients.length; i++) {
@@ -71,7 +70,7 @@ angular.module('smartShopper', ["chart.js"])
           data.push(total.nutrients[i].value);
         }
       }
-      console.log(total);
+      console.log(data);
 
       $scope.labels = labels;
       $scope.data = data;
@@ -84,9 +83,19 @@ angular.module('smartShopper', ["chart.js"])
 
 
     $scope.deleteItem = function(idx) {
-      $scope.alldata.results.splice(idx, 1);
-      localStorage.setItem("grocery", JSON.stringify($scope.alldata));
-      $scope.updateGraphs();
+      if ($scope.alldata.results.length == 1){
+        $scope.alldata.results = [];
+        $scope.alldata.total = [];
+        localStorage.removeItem("grocery");
+      }
+      else {
+        $scope.alldata.results.splice(idx, 1);
+        //get records of all totals again
+        $scope.getTotals("");
+        localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        $scope.updateGraphs();
+      }
+      
     };
 
 
