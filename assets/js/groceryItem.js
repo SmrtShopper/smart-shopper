@@ -1,18 +1,34 @@
 angular.module('smartShopper', [])
   .controller('GroceryController', ['$scope', function($scope) {
     $scope.items = [
-      {description:'ice cream', bought: true, quantity: 3},
-      {description:'milk', bought: false, quantity: 5}
+      {fields:{item_name:'ice cream', bought: true, quantity: 3}},
+      {fields:{item_name:'milk', bought: false, quantity: 5}}
     ];
     $scope.searchResults = [
-      {description: 'cheese'},
-      {description: 'broccoli'}
+      {fields:{item_name: 'cheese'}},
+      {fields:{item_name: 'broccoli'}}
     ];
 
     $scope.search = function() {
       
       var query = document.getElementById("grocItem").value;
+      var items_to_return = 3;
+      var appId = "feab83eb";
+      var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
       //search Nutritionix for search results...
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET","https://api.nutritionix.com/v1_1/search/" + query +
+         "?results=0%3A" + items_to_return + 
+         "&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=" + appId 
+         + "&appKey=" + appKey,true);
+      xmlhttp.send();
+      xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          $scope.searchResults = JSON.parse(xmlhttp.responseText).hits; 
+          $scope.$apply();
+          console.log($scope.searchResults);
+        }
+      }
 
       document.getElementById("grocItem").value = '';
     }

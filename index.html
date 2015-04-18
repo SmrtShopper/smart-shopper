@@ -76,7 +76,7 @@
       </li>
       <li class= "list-group-item" ng-repeat="result in searchResults">
         <button class="btn btn-xs pull-right" type="submit" ng-click="prependToList($index)">Add</button>
-        <span class = "item-bought-false">{{result.description}}</span>
+        <span class = "item-bought-false">{{result.fields.item_name}}</span>
       </li>
     </ul>
 
@@ -86,7 +86,7 @@
       <li class= "list-group-item" ng-repeat="item in items">
           <input type="checkbox" ng-model=item.bought>
           <i class="glyphicon glyphicon-remove pull-right hover" ng-click = "deleteItem($index)"></i>
-          <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
+          <span class = "item-bought-{{item.bought}}">{{item.fields.item_name}}</span>
           <span class = "badge badge_quantity">{{item.quantity}}</span>
           
       </li>
