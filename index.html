@@ -24,7 +24,6 @@
 <script type="text/javascript" src="assets/js/groceryItem.js"></script>
 <script type="text/javascript" src="assets/js/fb.js"></script>
 
-
 <nav class="navbar navbar-default" >
   <div class="container-fluid">
     <div class="navbar-header">
@@ -76,7 +75,7 @@
 
 
 
-    <li class= "list-group-item" ng-repeat="item in items">
+    <li class= "list-group-item" ng-repeat="item in alldata.results">
         <input type="checkbox" ng-model=item.bought>
         <i class="glyphicon glyphicon-remove pull-right hover" ng-click = "deleteItem($index)"></i>
         <span class = "item-bought-{{item.bought}}">{{item.parsed_query.food}}</span>
