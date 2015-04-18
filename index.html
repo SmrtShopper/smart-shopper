@@ -41,19 +41,19 @@
       <li class= "list-group-item active">Grocery List</li>
 
       <li class= "list-group-item"> <!-- Search bar -->
-        <div class="input-group has-feedback" ng-submit="search()">
-          <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search">
+        <form class="input-group has-feedback" ng-submit="search()" >
+          <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search" >
 
         
           <span class="input-group-btn">
             <button type="button" class="btn btn-default">
               <img src="mic.svg" id="record_button">
             </button>
-            <button id="search_icon" type="button" class="btn btn-default" type="submit">
+            <button id="search_icon" type="button" class="btn btn-default" type="submit" ng-click="search()">
               <i class="glyphicon glyphicon-search"></i>
             </button>
           </span>
-        </div>
+        </form>
         
 
         <script type="text/javascript">
