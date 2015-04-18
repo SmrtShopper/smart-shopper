@@ -7,19 +7,15 @@
   color: #7E7E7E;
 }
 
-
+#search_icon {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 #record_button {
 
-  height: 34px;
+  height: 16px;
   width: auto;
-  padding: 8px;
-	pointer-events: auto;
-  fill: #333;
-}
-
-#record_button:hover {
-  fill: #7E7E7E;
 }
 
 #delete_button {
