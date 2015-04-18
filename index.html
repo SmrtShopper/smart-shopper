@@ -12,75 +12,79 @@
 </head>
 <body>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script> -->
-  <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="angular.min.js"></script>
-  <script type="text/javascript" src="assets/js/groceryItem.js"></script>
-  <script type="text/javascript" src="assets/js/fb.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- <script src="node_modules/jquery/dist/jquery.min.js"></script> -->
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="Chart.min.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+<script type="text/javascript" src="assets/js/angular-chart.min.js"></script>
+<script type="text/javascript" src="assets/js/groceryItem.js"></script>
+<script type="text/javascript" src="assets/js/fb.js"></script>
 
 
-  <nav class="navbar navbar-default" >
-    <div class="container-fluid">
-      <div class="navbar-header">
-         
-        <a class="navbar-brand" href="#">
-            <span class = "glyphicon glyphicon-shopping-cart"></span>
-            Smart Shopper
-        </a>
-      </div>
+<nav class="navbar navbar-default" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+       
+      <a class="navbar-brand" href="#">
+          <span class = "glyphicon glyphicon-shopping-cart"></span>
+          Smart Shopper
+      </a>
     </div>
-  </nav>  
-  
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-  </fb:login-button>
-
-  <div id="status">
   </div>
+</nav>  
+
+<div class="container" ng-controller="GroceryController">
 
 
-  <div class="container" ng-controller="GroceryController">
+  
+  <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget">
+    <li class= "list-group-item active">Grocery List</li>
+
+    <li class= "list-group-item"> <!-- Search bar -->
+      <form class="input-group has-feedback" ng-submit="search()" >
+        <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search" >
+
+      
+        <span class="input-group-btn">
+          <button id="record_button" type="button" class="btn btn-default" ng-click="voiceRec()">
+            <img src="mic.svg">
+          </button>
+          <button id="search_icon" type="button" class="btn btn-default" type="submit" ng-click="search()">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </span>
+      </form>
+      
+
+      <script type="text/javascript">
+        if (navigator.userAgent.indexOf("Chrome") == -1) {
+          $("#record_button").hide();
+        }
+      </script>
+    </li>
 
 
-    
-    <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget">
-      <li class= "list-group-item active">Grocery List</li>
 
-      <li class= "list-group-item"> <!-- Search bar -->
-        <form class="input-group has-feedback" ng-submit="search()" >
-          <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search" >
+    <li class= "list-group-item" ng-repeat="item in items">
+        <input type="checkbox" ng-model=item.bought>
+        <i class="glyphicon glyphicon-remove pull-right hover" ng-click = "deleteItem($index)"></i>
+        <span class = "item-bought-{{item.bought}}">{{item.parsed_query.food}}</span>
+        <span class = "badge badge_quantity">{{item.parsed_query.qty}}</span>
 
         
-          <span class="input-group-btn">
-            <button id="record_button" type="button" class="btn btn-default" ng-click="voiceRec()">
-              <img src="mic.svg">
-            </button>
-            <button id="search_icon" type="button" class="btn btn-default" type="submit" ng-click="search()">
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-          </span>
-        </form>
-        
+    </li>
+  </ul>
 
-        <script type="text/javascript">
-          if (navigator.userAgent.indexOf("Chrome") == -1) {
-            $("#record_button").hide();
-          }
-        </script>
-      </li>
-
-
-
-      <li class= "list-group-item" ng-repeat="item in items">
-          <input type="checkbox" ng-model=item.bought>
-          <i class="glyphicon glyphicon-remove pull-right hover" ng-click = "deleteItem($index)"></i>
-          <span class = "item-bought-{{item.bought}}">{{item.parsed_query.food}}</span>
-          <span class = "badge badge_quantity">{{item.parsed_query.qty}}</span>
-
-          
-      </li>
+  <div id="charts" class="labeled-chart-container col-xs-12 col-md-6 col-offset-3">
+    <div class="canvas-holder">
+      <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels">
+      </canvas>
+    </div>
+    <ul class="doughnut-legend">
     </ul>
   </div>
 
@@ -90,6 +94,12 @@
   data-width="450"
   data-show-faces="true">
 </div>
+
+
+
+</div>
+
+
 
 </body>
 
