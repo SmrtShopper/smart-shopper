@@ -1,13 +1,16 @@
 angular.module('smartShopper', [])
   .controller('GroceryController', ['$scope', function($scope) {
-    $scope.items = [
-      {fields:{item_name:'ice cream', bought: true, quantity: 3}},
-      {fields:{item_name:'milk', bought: false, quantity: 5}}
-    ];
-    $scope.searchResults = [
-      {fields:{item_name: 'cheese'}},
-      {fields:{item_name: 'broccoli'}}
-    ];
+    // $scope.items = [
+    //   {fields:{item_name:'ice cream', bought: true, quantity: 3}},
+    //   {fields:{item_name:'milk', bought: false, quantity: 5}}
+    // ];
+    // $scope.searchResults = [
+    //   {fields:{item_name: 'cheese'}},
+    //   {fields:{item_name: 'broccoli'}}
+    // ];
+
+    $scope.items = localStorage.getItem("grocery");
+    $scope.searchResults = [];
 
     $scope.search = function() {
       
@@ -36,12 +39,13 @@ angular.module('smartShopper', [])
     $scope.prependToList = function(idx) {
       var item = $scope.searchResults[idx];
 
-      if ($scope.items.indexOf(item) == -1) {
+      if (!($scope.items) || $scope.items.indexOf(item) == -1) {
         $scope.items.unshift(item);
       }
       else {
         alert("Oops, that's already in your list!");
       }
+      localStorage.setItem("grocery", JSON.stringify($scope.items));
 
     /*
     $scope.prependItem = function() {
