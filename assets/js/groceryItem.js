@@ -10,7 +10,6 @@ angular.module('smartShopper', [])
     // ];
 
     $scope.items = JSON.parse(localStorage.getItem("grocery")) || [];
-    $scope.searchResults = [];
 
     $scope.search = function() {
       
@@ -20,16 +19,17 @@ angular.module('smartShopper', [])
       var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
       //search Nutritionix for search results...
       xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET","https://api.nutritionix.com/v1_1/search/" + query +
-         "?results=0%3A" + items_to_return + 
-         "&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=" + appId 
-         + "&appKey=" + appKey,true);
-      xmlhttp.send();
+      xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
+      xmlhttp.setRequestHeader("X-APP-ID", appId);
+      xmlhttp.setRequestHeader("X-APP-KEY", appKey);
+      xmlhttp.setRequestHeader("Content-Type", "text/plain");
+      xmlhttp.send(query);
       xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          $scope.searchResults = JSON.parse(xmlhttp.responseText).hits; 
+          console.log(JSON.parse(xmlhttp.responseText).results);
+          $scope.items += JSON.parse(xmlhttp.responseText).results; 
           $scope.$apply();
-          console.log($scope.searchResults);
+          console.log($scope.items);
         }
       }
 
