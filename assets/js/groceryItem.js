@@ -10,6 +10,7 @@ angular.module('smartShopper', [])
     // ];
 
     $scope.items = JSON.parse(localStorage.getItem("grocery")) || [];
+    $scope.allitemstring = '';
 
     $scope.search = function() {
       
@@ -28,6 +29,7 @@ angular.module('smartShopper', [])
           console.log(JSON.parse(xmlhttp.responseText).results[0]);
           item = JSON.parse(xmlhttp.responseText).results[0]; 
           $scope.items.unshift(item);
+          $scope.allitemstring+="\n" + query;
           $scope.$apply();
           console.log($scope.items);
           localStorage.setItem("grocery", JSON.stringify($scope.items));
