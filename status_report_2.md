@@ -14,6 +14,8 @@ of items (for nutrition information)
 
 ##Goals for Next Week
 * Continue improving mobile interface
+* Build charts
+* Clean nutrition data - round to the hundredth place, remove values below a certain percentage of the total?
 * Determine best way to display results from search and implement
 * User login
 * Server
