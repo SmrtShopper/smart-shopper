@@ -41,6 +41,7 @@ angular.module('smartShopper', [])
 
     $scope.deleteItem = function(idx) {
       $scope.items.splice(idx, 1);
+      localStorage.setItem("grocery", JSON.stringify($scope.items));
     };
 
 
