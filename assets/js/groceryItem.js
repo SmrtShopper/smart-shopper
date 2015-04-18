@@ -1,4 +1,4 @@
-angular.module('smartShopper', [])
+angular.module('smartShopper', ["chart.js"])
   .controller('GroceryController', ['$scope', function($scope) {
     // $scope.items = [
     //   {fields:{item_name:'ice cream', bought: true, quantity: 3}},
@@ -38,6 +38,31 @@ angular.module('smartShopper', [])
       document.getElementById("grocItem").value = '';
     };
 
+    //charts
+    $(document).ready(function() {
+      var data = $scope.items[0];
+      var ctx = $("#modular-doughnut").get(0).getContext("2d");
+      var myDoughnutChart = new Chart(ctx).Doughnut(data);
+    });
+    
+    // console.log($scope.items);
+    // var item = $scope.items[0];
+    // console.log(item);
+    // var labels = [];
+    // var data = [];
+
+
+    // for (var i = 0; i < item.nutrients.length; i++) {
+    //   if (item.nutrients[i].unit == "g") {
+    //     labels.splice(i, 0, item.nutrients[i].name);
+    //     data.splice(i, 0, item.nutrients[i].value);
+    //   }
+    // }
+    // console.log(data);
+
+    // $scope.labels = labels;
+    // $scope.data = data;
+
 
     $scope.deleteItem = function(idx) {
       $scope.items.splice(idx, 1);
@@ -59,4 +84,7 @@ angular.module('smartShopper', [])
       recognition.start();
       };
     }]);
+
+
+
 
