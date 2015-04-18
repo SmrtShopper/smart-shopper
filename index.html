@@ -33,20 +33,11 @@
     </div>
   </nav>  
 
-  <div class="container" ng-controller="GroceryController">
-    <ul class = "list-group coll-xs-12 col-md-6" id="search_box">
-      
-      <li class= "list-group-item" ng-repeat="result in searchResults">
-        <button class="btn btn-xs pull-right" type="submit" ng-click="prependToList($index)">Add</button>
-        <span class = "item-bought-false">{{result.fields.item_name}}</span>
-      </li>
-    </ul>
-
-    
+  <div class="container" ng-controller="GroceryController">    
     <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget">
       <li class= "list-group-item active">Grocery List</li>
       <li class= "list-group-item"> <!-- Search bar -->
-        <form class="form-inline" ng-submit="prependItem()">
+        <form class="form-inline" ng-submit="search()">
           <div class="form-group has-feedback">
             <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search">
               <svg id="record_button" class="form-control-feedback glyphicon" ng-click="voiceRec()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 12 12" enable-background="new 0 0 12 12" xml:space="preserve">
@@ -71,7 +62,6 @@
                 </g>
               </g>
               </svg>
-
           </div>
           <button class="btn btn-default pull-right" type="submit">
             <i class="glyphicon glyphicon-search"></i>
@@ -88,8 +78,8 @@
       <li class= "list-group-item" ng-repeat="item in items">
           <input type="checkbox" ng-model=item.bought>
           <i class="glyphicon glyphicon-remove pull-right hover" ng-click = "deleteItem($index)"></i>
-          <span class = "item-bought-{{item.bought}}">{{item.description}}</span>
-          <span class = "badge badge_quantity">{{item.quantity}}</span>
+          <span class = "item-bought-{{item.bought}}">{{item.parsed_query.food}}</span>
+          <span class = "badge badge_quantity">{{item.parsed_query.qty}}</span>
 
           
       </li>
