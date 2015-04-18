@@ -9,7 +9,7 @@ angular.module('smartShopper', [])
     //   {fields:{item_name: 'broccoli'}}
     // ];
 
-    $scope.items = localStorage.getItem("grocery");
+    $scope.items = JSON.parse(localStorage.getItem("grocery")) || [];
     $scope.searchResults = [];
 
     $scope.search = function() {
@@ -39,7 +39,7 @@ angular.module('smartShopper', [])
     $scope.prependToList = function(idx) {
       var item = $scope.searchResults[idx];
 
-      if (!($scope.items) || $scope.items.indexOf(item) == -1) {
+      if ($scope.items.indexOf(item) == -1) {
         $scope.items.unshift(item);
       }
       else {
