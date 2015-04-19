@@ -95,6 +95,7 @@ angular.module('smartShopper', ["chart.js"])
         localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         $scope.updateGraphs();
       }
+      $scope.$apply();
       
     };
 
