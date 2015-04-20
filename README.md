@@ -19,7 +19,7 @@ Smart Shopper
   - Five Required Features
     - Server-side data persistence with MySQL
     - Client-side data persistence: store user's shopping list so he/she can leave the webpage and come back to find the cart still there
-    - Front-end framework including Bootstrap, React, Backbone.js, AngularJS
+    - Front-end framework including Bootstrap, AngularJS
     - Reporting of money spent on groceries using charts and graphs: distribution of money spent on different types of goods, money spent over time
     - Email or push notifications about expiring goods (milk, fruit, eggs, etc.)
   - Extra Features
