@@ -63,6 +63,7 @@ angular.module('smartShopper', ["chart.js"])
         return;
       }
 
+      // call modularized nutrients-parsing function
       var arr = get_data_and_labels(total.nutrients, "g", 0.3);
       console.log(arr);
 
