@@ -19,4 +19,3 @@ of items (for nutrition information)
 * Determine best way to display results from search and implement
 * User login
 * Server
-

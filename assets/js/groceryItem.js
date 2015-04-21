@@ -63,22 +63,31 @@ angular.module('smartShopper', ["chart.js"])
         return;
       }
 
+      // call modularized nutrients-parsing function
+      var arr = get_data_and_labels(total.nutrients, "g", 0.3);
+      console.log(arr);
 
-      for (var i = 0; i < total.nutrients.length; i++) {
-        if (total.nutrients[i].unit == "g") {
-          labels.push(total.nutrients[i].name);
-          data.push(total.nutrients[i].value);
-        }
-      }
-      console.log(data);
 
-      $scope.labels = labels;
-      $scope.data = data;
+      $scope.labels = arr[0];
+      $scope.data = arr[1];
     }
 
     $scope.$on('$viewContentLoaded', function() {
       $scope.updateGraphs();
     });
+
+    function get_data_and_labels(nutrientsData, unit, minValue) {
+      // nutrientsData is an array, unit is a string, minValue is a float
+      var labels = [];
+      var data = [];
+      for (var i = 0; i < nutrientsData.length; i++) {
+        if (nutrientsData[i].unit == unit && nutrientsData[i].value > minValue) {
+          labels.push(nutrientsData[i].name);
+          data.push((nutrientsData[i].value).toFixed(2)); // round to 2 decimal places
+        }
+      }
+      return [labels, data];
+    }
    
 
 
