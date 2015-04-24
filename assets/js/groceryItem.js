@@ -39,7 +39,7 @@ angular.module('smartShopper', ["chart.js"])
           console.log(JSON.parse(xmlhttp.responseText));
           alldata = JSON.parse(xmlhttp.responseText); 
           $scope.alldata = alldata;
-          $scope.$apply();
+
           document.getElementById("grocItem").value = '';
           console.log($scope.alldata.results);
           $scope.updateGraphs();
