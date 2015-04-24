@@ -35,6 +35,7 @@ angular.module('smartShopper', ["chart.js"])
       xmlhttp.setRequestHeader("Content-Type", "text/plain");
       xmlhttp.onreadystatechange=function() {
         if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          console.log("WE HAVE DATA BACK");
           console.log(JSON.parse(xmlhttp.responseText));
           alldata = JSON.parse(xmlhttp.responseText); 
           $scope.alldata = alldata;
