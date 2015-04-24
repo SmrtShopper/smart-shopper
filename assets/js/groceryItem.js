@@ -35,15 +35,11 @@ angular.module('smartShopper', ["chart.js"])
       xmlhttp.setRequestHeader("Content-Type", "text/plain");
       xmlhttp.onreadystatechange=function() {
         if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          console.log("WE HAVE DATA BACK");
-          console.log(JSON.parse(xmlhttp.responseText));
           alldata = JSON.parse(xmlhttp.responseText); 
           $scope.alldata = alldata;
           $scope.updateGraphs();
           $scope.$apply();
           document.getElementById("grocItem").value = '';
-          console.log($scope.alldata.results);
-          
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
 
@@ -52,7 +48,6 @@ angular.module('smartShopper', ["chart.js"])
     }
 
     $scope.updateGraphs = function(){
-      console.log("updating Graphs!");
       console.log($scope.alldata.total);
       var total = $scope.alldata.total;
       var labels = [];
@@ -67,7 +62,6 @@ angular.module('smartShopper', ["chart.js"])
 
       // call modularized nutrients-parsing function
       var arr = get_data_and_labels(total.nutrients, "g", 0.3);
-      console.log(arr);
 
 
       $scope.labels = arr[0];
@@ -115,7 +109,6 @@ angular.module('smartShopper', ["chart.js"])
         
       var recognition = new webkitSpeechRecognition();
       recognition.onresult = function(event) { 
-        console.log(event) 
         if (event.results[0].isFinal) {
             document.getElementById("grocItem").value = event.results[0][0].transcript;
         }
