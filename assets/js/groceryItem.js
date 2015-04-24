@@ -68,8 +68,8 @@ angular.module('smartShopper', ["chart.js"])
       console.log(arr);
 
 
-      labels = arr[0];
-      data = arr[1];
+      $scope.labels = arr[0];
+      $scope.data = arr[1];
     }
 
     $scope.$on('$viewContentLoaded', function() {
