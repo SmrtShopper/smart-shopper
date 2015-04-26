@@ -1,5 +1,5 @@
-angular.module('smartShopper', ["chart.js"])
-  .controller('GroceryController', ['$scope', function($scope) {
+angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService'])
+  .controller('GroceryController', ['$scope', function($scope, ModalService) {
     // $scope.items = [
     //   {fields:{item_name:'ice cream', bought: true, quantity: 3}},
     //   {fields:{item_name:'milk', bought: false, quantity: 5}}
@@ -45,7 +45,34 @@ angular.module('smartShopper', ["chart.js"])
 
       }
       xmlhttp.send(allitemstr);
-    }
+    };
+
+    $scope.sendtophone = function(){
+      bootbox.prompt("Please enter your phone number", function(result) {
+        if (result === null) {
+
+        }
+        else {
+          var allitemstr = '';
+          if ($scope.alldata.results) {
+           for (var i = 0; i < $scope.alldata.results.length; i++) {
+              allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
+            }
+          }
+          $.ajax({
+            type: "POST",
+            url: "http://textbelt.com/text",
+            data: {number:result, message:allitemstr},
+            success: bootbox.alert("Message Sent!"),
+            dataType: "text"
+          });
+        }
+        
+      });
+      
+    };
+
+
 
     $scope.updateGraphs = function(){
       console.log($scope.alldata.total);
@@ -66,7 +93,7 @@ angular.module('smartShopper', ["chart.js"])
 
       $scope.labels = arr[0];
       $scope.data = arr[1];
-    }
+    };
 
     $scope.$on('$viewContentLoaded', function() {
       $scope.updateGraphs();
@@ -83,7 +110,7 @@ angular.module('smartShopper', ["chart.js"])
         }
       }
       return [labels, data];
-    }
+    };
    
 
 
@@ -106,7 +133,6 @@ angular.module('smartShopper', ["chart.js"])
 
 
     $scope.voiceRec = function(){
-        
       var recognition = new webkitSpeechRecognition();
       recognition.onresult = function(event) { 
         if (event.results[0].isFinal) {
@@ -119,6 +145,8 @@ angular.module('smartShopper', ["chart.js"])
       recognition.start();
       };
     }]);
+
+
 
 
 

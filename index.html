@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
   <!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />
-
   <link rel="stylesheet" type="text/css" href="assets/css/desktop.css">
     
 </head>
@@ -23,6 +22,9 @@
 <script type="text/javascript" src="assets/js/script.js"></script>
 <script type="text/javascript" src="assets/js/angular-chart.min.js"></script>
 <script type="text/javascript" src="assets/js/groceryItem.js"></script>
+<script type="text/javascript" src="assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+<script src="bower_components\angular-modal-service\dst\angular-modal-service.min.js"></script>  
+<script src="node_modules/bootbox/bootbox.min.js"></script>  
 <!-- <script type="text/javascript" src="assets/js/fb.js"></script> -->
 
 <nav class="navbar navbar-default" >
@@ -54,6 +56,9 @@
         <span class="input-group-btn">
           <button id="record_button" type="button" class="btn btn-default" ng-click="voiceRec()">
             <img src="assets/images/mic.svg">
+          </button>
+          <button id="send_to_phone" type="button" class="btn btn-default" type="submit" ng-click="sendtophone()">
+            <i class="glyphicon glyphicon-phone"></i>
           </button>
           <button id="search_icon" type="button" class="btn btn-default" type="submit" ng-click="search()">
             <i class="glyphicon glyphicon-search"></i>
@@ -92,6 +97,9 @@
     <ul class="doughnut-legend">
     </ul>
   </div>
+
+ 
+
 
 <!-- <div
   class="fb-like"
