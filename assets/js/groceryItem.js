@@ -10,6 +10,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     // ];
     $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
 
+
+
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
       $scope.getTotals(query);
@@ -37,8 +39,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
           alldata = JSON.parse(xmlhttp.responseText); 
           $scope.alldata = alldata;
-          $scope.updateGraphs();
-          $scope.$apply();
+          // $scope.updateGraphs();
+          // $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
@@ -77,22 +79,25 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     $scope.updateGraphs = function(){
       console.log($scope.alldata.total);
       var total = $scope.alldata.total;
-      var labels = [];
-      var data = [];
-
-      if (!total) {
-        //do something here to indicate no data and prompt to add data
-        var labels = ["No Data"];
-        var data = ["1"];
-        return;
-      }
 
       // call modularized nutrients-parsing function
       var arr = get_data_and_labels(total.nutrients, "g", 0.3);
 
 
-      $scope.labels = arr[0];
       $scope.data = arr[1];
+      $scope.labels = arr[0];
+      
+      // $scope.defaults.global = {
+      //   animation: false,
+      //   showScale: true,
+      // }
+      // $scope.legend = true;
+      $scope.options = {
+        animationEasing: "easeOutQuart",
+        segmentShowStroke: false,
+        responsive: true,
+      }
+
     };
 
     $scope.$on('$viewContentLoaded', function() {
@@ -101,8 +106,17 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
     function get_data_and_labels(nutrientsData, unit, minValue) {
       // nutrientsData is an array, unit is a string, minValue is a float
+
       var labels = [];
       var data = [];
+      
+      if (!nutrientsData) {
+        //do something here to indicate no data and prompt to add data
+        var labels = ["No Data"];
+        var data = ["1"];
+        return;
+      }
+
       for (var i = 0; i < nutrientsData.length; i++) {
         if (nutrientsData[i].unit == unit && nutrientsData[i].value > minValue) {
           labels.push(nutrientsData[i].name);
@@ -145,9 +159,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       recognition.start();
       };
     }]);
-
-
-
 
 
 
