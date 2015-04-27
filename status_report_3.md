@@ -13,3 +13,8 @@ API
 ##Goals for Next Week
 * Email, SMS, or push notifications
 * Server
+
+
+#Comments by Ming
+* What about the server?  What specifically do you need to do?
+* Do you still need to do search?
