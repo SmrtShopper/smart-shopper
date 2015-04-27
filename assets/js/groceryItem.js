@@ -25,8 +25,9 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
         }
       }
-      
-      console.log(allitemstr);
+      console.log("$scope.alldata");
+      console.log($scope.alldata);
+
       var appId = "feab83eb";
       var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
       //search Nutritionix for search results...
@@ -38,10 +39,9 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       xmlhttp.onreadystatechange=function() {
         if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
           alldata = JSON.parse(xmlhttp.responseText);
-          console.log(alldata)
           $scope.alldata = alldata;
-          // $scope.updateGraphs();
-          // $scope.$apply();
+          $scope.updateGraphs();
+          $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
@@ -161,8 +161,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           console.log("Error", event);   
       }
       recognition.start();
-      };
-    }]);
+    };
+  }]);
 
 
 
