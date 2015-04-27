@@ -48,11 +48,12 @@
   <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget">
     <li class= "list-group-item active">
       <span class="list-group-item-heading">Grocery List</span>
-
-        <button id="send_to_phone" type="button" class="btn btn-xs pull-right" type="submit" ng-click="sendtophone()">
+      <span class="btn-group-xs">
+        <button id="send_to_phone" type="button" class="btn btn-default pull-right hover" type="submit" ng-click="sendtophone()">
           <i class="glyphicon glyphicon-phone"></i>
           <span>Send to phone</span>
         </button>
+      </span>
     </li>
     <li class= "list-group-item"> <!-- Search bar -->
       <form class="input-group has-feedback" ng-submit="search()" >
