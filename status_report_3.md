@@ -13,7 +13,8 @@ API
 ##Goals for Next Week
 * Email, SMS, or push notifications
 * Server
-
+* More graphs
+* Legends for graphs
 
 #Comments by Ming
 * What about the server?  What specifically do you need to do?
