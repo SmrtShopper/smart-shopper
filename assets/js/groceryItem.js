@@ -35,12 +35,16 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       xmlhttp.setRequestHeader("Content-Type", "text/plain");
       xmlhttp.onreadystatechange=function() {
         if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          alldata = JSON.parse(xmlhttp.responseText); 
+          alldata = JSON.parse(xmlhttp.responseText);
+          console.log(alldata)
           $scope.alldata = alldata;
           $scope.updateGraphs();
           $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
+            bootbox.alert("No results found!");
+            return;
         }
 
       }
