@@ -23,3 +23,7 @@ categories
 * Add pre-existing categories
 * Check if browser supports the Google Speech to Text API, and if it doesn't,
 do not display the record button
+
+#Comments by Ming
+* Yes, we met and I'm glad we met.  I understand lots of great progess made.
+* You probably figured it out: I credit you all for introducing the class to Postman
