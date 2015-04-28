@@ -10,8 +10,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     // ];
     $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
 
-
-
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
       $scope.getTotals(query);
@@ -25,8 +23,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
         }
       }
-      console.log("$scope.alldata");
-      console.log($scope.alldata);
 
       var appId = "feab83eb";
       var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
@@ -39,9 +35,18 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       xmlhttp.onreadystatechange=function() {
         if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
           alldata = JSON.parse(xmlhttp.responseText);
+
+          // $scope.alldata = $scope.alldata.map(function(data) {
+          //   return data.map(function (y) {
+          //     console.log(y);
+          //     return y;
+          //   });
+          // });
+
+
           $scope.alldata = alldata;
           $scope.updateGraphs();
-          $scope.$apply();
+          // $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
@@ -78,30 +83,31 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       
     };
 
+    $scope.initializeGraphs = function() {
 
+      $scope.data = [];
+      $scope.labels = [];
+      for (var i = 0; i < 860; i++) {
+        $scope.data[i] = 0;
+        $scope.labels[i] = "";
+      }
 
-    $scope.updateGraphs = function(){
-      console.log($scope.alldata.total);
-      var total = $scope.alldata.total;
+      for (var i = 0; i < nutrient_labels.length; i++) {
+        current = nutrient_labels[i];
+        $scope.labels[current.id] = current.name;
+      }
 
-      // call modularized nutrients-parsing function
-      var arr = get_data_and_labels(total.nutrients, "g", 0.3);
-
-
-      $scope.data = arr[1];
-      $scope.labels = arr[0];
-      
-      // $scope.defaults.global = {
-      //   animation: false,
-      //   showScale: true,
-      // }
-      // $scope.legend = true;
       $scope.options = {
         animationEasing: "easeOutQuart",
         segmentShowStroke: false,
         responsive: true,
-      }
+      };
+      $scope.updateGraphs();
+    };
 
+    $scope.updateGraphs = function(){
+
+      get_data_and_labels($scope.alldata.total.nutrients, "g", 0.3);
     };
 
     $scope.$on('$viewContentLoaded', function() {
@@ -111,23 +117,36 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     function get_data_and_labels(nutrientsData, unit, minValue) {
       // nutrientsData is an array, unit is a string, minValue is a float
 
-      var labels = [];
-      var data = [];
-      
       if (!nutrientsData) {
         //do something here to indicate no data and prompt to add data
-        var labels = ["No Data"];
-        var data = ["1"];
+        alert("NO DATA");
         return;
       }
 
-      for (var i = 0; i < nutrientsData.length; i++) {
-        if (nutrientsData[i].unit == unit && nutrientsData[i].value > minValue) {
-          labels.push(nutrientsData[i].name);
-          data.push((nutrientsData[i].value).toFixed(2)); // round to 2 decimal places
+      else {
+        var id_index = -1;
+        for (var i = 0; i < nutrientsData.length; i++) {
+          if (nutrientsData[i].unit == unit && nutrientsData[i].value > minValue) {
+            id_index = nutrientsData[i].attr_id;
+            $scope.data[id_index] = parseFloat( (nutrientsData[i].value).toFixed(2) );
+          }
         }
+      //   var numEmpty = 0;
+      //   var numFilled = 0;
+      //   for (var i = 0; i < $scope.data.length; i++) {
+      //     if ($scope.data[i] == 0) {
+      //       numEmpty++;
+      //     }
+      //     else {
+      //       numFilled++;
+      //     }
+      //   }
+      //   console.log(numFilled + " filled, " + numEmpty + " empty.");
+
+
+        $scope.$apply();
       }
-      return [labels, data];
+
     };
    
 
