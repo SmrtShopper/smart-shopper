@@ -1,3 +1,6 @@
+var labels;
+var data;
+
 angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService'])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
     // $scope.items = [
@@ -100,7 +103,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       }
 
       $scope.options = {
-        // animationEasing: "easeOutQuart",
+        animationEasing: "easeOutQuart",
         segmentShowStroke: false,
         responsive: true,
       };
