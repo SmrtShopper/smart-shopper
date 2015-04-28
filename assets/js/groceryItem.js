@@ -14,6 +14,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       var query = document.getElementById("grocItem").value;
       $scope.getTotals(query);
       document.getElementById("grocItem").value = '';
+
     };
 
     $scope.getTotals = function(query) {
@@ -46,6 +47,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
           $scope.alldata = alldata;
           $scope.updateGraphs();
+          $scope.$apply();
           // $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
@@ -144,7 +146,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       //   console.log(numFilled + " filled, " + numEmpty + " empty.");
 
 
-        $scope.$apply();
+        
       }
 
     };
@@ -153,8 +155,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
     $scope.deleteItem = function(idx) {
       if ($scope.alldata.results.length == 1){
-        $scope.alldata.results = [];
-        $scope.alldata.total = [];
+        $scope.initializeGraphs();
         localStorage.removeItem("grocery");
       }
       else {
@@ -164,7 +165,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         $scope.updateGraphs();
       }
-      $scope.$apply();
       
     };
 
