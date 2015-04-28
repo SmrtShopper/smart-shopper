@@ -1,6 +1,3 @@
-var labels;
-var data;
-
 angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService'])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
     // $scope.items = [
@@ -51,7 +48,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           $scope.alldata = alldata;
           $scope.updateGraphs();
           $scope.$digest();
-          // $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
