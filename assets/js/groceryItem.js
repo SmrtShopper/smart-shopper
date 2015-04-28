@@ -50,7 +50,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
           $scope.alldata = alldata;
           $scope.updateGraphs();
-          $scope.$apply();
+          $scope.$digest();
           // $scope.$apply();
           document.getElementById("grocItem").value = '';
           localStorage.setItem("grocery", JSON.stringify($scope.alldata));
