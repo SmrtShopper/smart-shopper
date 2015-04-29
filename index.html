@@ -91,16 +91,14 @@
     </li>
   </ul>
 
-  <div id="charts" class="jumbotron labeled-chart-container col-xs-12 col-md-6 col-offset-3">
-
-    <div class="canvas-holder">
-      <canvas id="doughnut" class="chart chart-doughnut" data-ng-init="initializeGraphs()" data="data" labels="labels" options="options">
-      </canvas>
-      <h3 align="center">Grams</h3>
+  <div id="charts" class="col-xs-12 col-md-6 col-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Gram chart</div>
+      <div class="panel-body">
+        <canvas id="doughnut" class="chart chart-doughnut" data-ng-init="initializeGraphs()" data="data" labels="labels" options="options">
+        </canvas>
+      </div>
     </div>
-
-    <ul class="doughnut-legend">
-    </ul>
   </div>
 
  

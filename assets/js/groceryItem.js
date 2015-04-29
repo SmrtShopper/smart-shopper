@@ -8,7 +8,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     //   {fields:{item_name: 'cheese'}},
     //   {fields:{item_name: 'broccoli'}}
     // ];
-    $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || null;
+    $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
 
     console.log($scope.alldata);
     
@@ -20,9 +20,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     };
 
     $scope.getTotals = function(query) {
-      if ($scope.alldata == null){
-        $scope.alldata = [];
-      }
       var allitemstr = query + "\n";
       if ($scope.alldata.results) {
         for (var i = 0; i < $scope.alldata.results.length; i++) {
@@ -33,51 +30,35 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       var appId = "feab83eb";
       var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
       //search Nutritionix for search results...
-      $.ajax({
-            type: "POST",
-            url: "https://grocery-server.herokuapp.com/addGrocery/",
-            data: {login: '1', grocery: allitemstr},
-            dataType: "text"
-          })
-      .done (function(response, status){
-        alldata = JSON.parse(response);
-        $scope.alldata = alldata;
-        $scope.updateGraphs();
-        $scope.$digest();
-        document.getElementById("grocItem").value = '';
-        localStorage.setItem("grocery", JSON.stringify($scope.alldata));
-      })
-      .fail (function (response,status){
-         bootbox.alert("No results found!");
-      });
-      // xmlhttp = new XMLHttpRequest();
-      // xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
-      // xmlhttp.setRequestHeader("X-APP-ID", appId);
-      // xmlhttp.setRequestHeader("X-APP-KEY", appKey);
-      // xmlhttp.setRequestHeader("Content-Type", "text/plain");
-      //   if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
-      //     alldata = JSON.parse(xmlhttp.responseText);
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
+      xmlhttp.setRequestHeader("X-APP-ID", appId);
+      xmlhttp.setRequestHeader("X-APP-KEY", appKey);
+      xmlhttp.setRequestHeader("Content-Type", "text/plain");
+      xmlhttp.onreadystatechange=function() {
+        if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          alldata = JSON.parse(xmlhttp.responseText);
 
-      //     // $scope.alldata = $scope.alldata.map(function(data) {
-      //     //   return data.map(function (y) {
-      //     //     console.log(y);
-      //     //     return y;
-      //     //   });
-      //     // });
+          // $scope.alldata = $scope.alldata.map(function(data) {
+          //   return data.map(function (y) {
+          //     console.log(y);
+          //     return y;
+          //   });
+          // });
 
 
-      //     $scope.alldata = alldata;
-      //     $scope.updateGraphs();
-      //     $scope.$digest();
-      //     document.getElementById("grocItem").value = '';
-      //     localStorage.setItem("grocery", JSON.stringify($scope.alldata));
-      //   } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
-      //       bootbox.alert("No results found!");
-      //       return;
-      //   }
+          $scope.alldata = alldata;
+          $scope.updateGraphs();
+          $scope.$digest();
+          document.getElementById("grocItem").value = '';
+          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
+            bootbox.alert("No results found!");
+            return;
+        }
 
-      // }
-      // xmlhttp.send(allitemstr);
+      }
+      xmlhttp.send(allitemstr);
     };
 
     $scope.sendtophone = function(){
@@ -124,13 +105,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         segmentShowStroke: false,
         responsive: true,
       };
-      if ($scope.alldata){
-        $scope.updateGraphs();
-      }
-      else {
-        //display no data warning
-
-      }
+      $scope.updateGraphs();
     };
 
     $scope.updateGraphs = function(){
@@ -181,7 +156,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
     $scope.deleteItem = function(idx) {
       if ($scope.alldata.results.length == 1){
-        $scope.alldata = null;
         $scope.initializeGraphs();
         localStorage.removeItem("grocery");
       }

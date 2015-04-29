@@ -7,6 +7,13 @@
   color: #7E7E7E;
 }
 
+.panel-heading {
+  font-weight: bold;
+}
+.list-group-item-heading {
+  font-weight: bold;
+}
+
 #search_icon {
   padding-left: 20px;
   padding-right: 20px;
