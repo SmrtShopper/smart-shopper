@@ -2,20 +2,17 @@ var nutrient_labels = [
   {
     "id": 203,
     "name": "Protein",
-    "unit": "g",
-    "ratio": 4.53
+    "unit": "g"
   },
   {
     "id": 204,
     "name": "Total fat",
-    "unit": "g",
-    "ratio": 3.50
+    "unit": "g"
   },
   {
     "id": 205,
     "name": "Carbohydrates",
-    "unit": "g",
-    "ratio": 13.20
+    "unit": "g"
   },
   {
     "id": 207,
@@ -95,20 +92,17 @@ var nutrient_labels = [
   {
     "id": 291,
     "name": "Dietary fiber",
-    "unit": "g",
-    "ratio": 1.55
+    "unit": "g"
   },
   {
     "id": 301,
     "name": "Calcium",
-    "unit": "mg",
-    "ratio": 60.62
+    "unit": "mg"
   },
   {
     "id": 303,
     "name": "Iron",
-    "unit": "mg",
-    "ratio": 0.89
+    "unit": "mg"
   },
   {
     "id": 304,
@@ -123,26 +117,22 @@ var nutrient_labels = [
   {
     "id": 306,
     "name": "Potassium",
-    "unit": "mg",
-    "ratio": 171.99
+    "unit": "mg"
   },
   {
     "id": 307,
     "name": "Sodium",
-    "unit": "mg",
-    "ratio": 86.85
+    "unit": "mg"
   },
   {
     "id": 309,
     "name": "Zinc",
-    "unit": "mg",
-    "ratio": 0.71
+    "unit": "mg"
   },
   {
     "id": 312,
     "name": "Copper",
-    "unit": "mg",
-    "ratio": 0.07
+    "unit": "mg"
   },
   {
     "id": 313,
@@ -172,8 +162,7 @@ var nutrient_labels = [
   {
     "id": 320,
     "name": "Vitamin A, RAE",
-    "unit": "&micro;g",
-    "ratio": 42.30
+    "unit": "&micro;g"
   },
   {
     "id": 321,
@@ -188,14 +177,12 @@ var nutrient_labels = [
   {
     "id": 323,
     "name": "Vitamin E",
-    "unit": "mg",
-    "ratio": 0.42
+    "unit": "mg"
   },
   {
     "id": 324,
     "name": "Vitamin D",
-    "unit": "IU",
-    "ratio": 14.04
+    "unit": "IU"
   },
   {
     "id": 325,
@@ -265,8 +252,7 @@ var nutrient_labels = [
   {
     "id": 401,
     "name": "Vitamin C",
-    "unit": "mg",
-    "ratio": 6.08
+    "unit": "mg"
   },
   {
     "id": 404,
@@ -321,8 +307,7 @@ var nutrient_labels = [
   {
     "id": 430,
     "name": "Vitamin K",
-    "unit": "&micro;g",
-    "ratio": 7.58
+    "unit": "&micro;g"
   },
   {
     "id": 431,
@@ -452,8 +437,7 @@ var nutrient_labels = [
   {
     "id": 601,
     "name": "Cholesterol",
-    "unit": "mg",
-    "ratio": 11.01
+    "unit": "mg"
   },
   {
     "id": 605,
@@ -760,4 +744,103 @@ var nutrient_labels = [
     "name": "18:1-11 t (18:1t n-7)",
     "unit": "g"
   }
-]
+];
+
+var radar_labels = [
+  {
+    "id": 203,
+    "name": "Protein",
+    "unit": "g",
+    "ratio": 0.0453
+  },
+  {
+    "id": 204,
+    "name": "Total fat",
+    "unit": "g",
+    "ratio": 0.0350
+  },
+  {
+    "id": 205,
+    "name": "Carbohydrates",
+    "unit": "g",
+    "ratio": 0.1320
+  },
+  {
+    "id": 291,
+    "name": "Dietary fiber",
+    "unit": "g",
+    "ratio": 0.0155
+  },
+  {
+    "id": 601,
+    "name": "Cholesterol",
+    "unit": "mg",
+    "ratio": 0.1101
+  },
+  {
+    "id": 301,
+    "name": "Calcium",
+    "unit": "mg",
+    "ratio": 0.6062
+  },
+  {
+    "id": 303,
+    "name": "Iron",
+    "unit": "mg",
+    "ratio": 0.0089
+  },
+  {
+    "id": 306,
+    "name": "Potassium",
+    "unit": "mg",
+    "ratio": 1.7199
+  },
+  {
+    "id": 307,
+    "name": "Sodium",
+    "unit": "mg",
+    "ratio": 0.8685
+  },
+  {
+    "id": 309,
+    "name": "Zinc",
+    "unit": "mg",
+    "ratio": 0.0071
+  },
+  {
+    "id": 312,
+    "name": "Copper",
+    "unit": "mg",
+    "ratio": 0.0007
+  },
+  {
+    "id": 320,
+    "name": "Vitamin A, RAE",
+    "unit": "&micro;g",
+    "ratio": 0.4230
+  },
+  {
+    "id": 401,
+    "name": "Vitamin C",
+    "unit": "mg",
+    "ratio": 0.0608
+  },
+  {
+    "id": 324,
+    "name": "Vitamin D",
+    "unit": "IU",
+    "ratio": 0.1404
+  },
+  {
+    "id": 323,
+    "name": "Vitamin E",
+    "unit": "mg",
+    "ratio": 0.0042
+  },
+  {
+    "id": 430,
+    "name": "Vitamin K",
+    "unit": "&micro;g",
+    "ratio": 0.0758
+  }
+];
