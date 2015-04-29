@@ -11,7 +11,7 @@ var nutrient_labels = [
   },
   {
     "id": 205,
-    "name": "Carbohydrates",
+    "name": "Carbs",
     "unit": "g"
   },
   {
