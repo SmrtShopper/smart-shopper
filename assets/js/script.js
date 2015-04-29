@@ -137,7 +137,7 @@ var nutrient_labels = [
   {
     "id": 313,
     "name": "Fluoride, F",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 315,
@@ -147,7 +147,7 @@ var nutrient_labels = [
   {
     "id": 317,
     "name": "Selenium, Se",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 318,
@@ -157,22 +157,22 @@ var nutrient_labels = [
   {
     "id": 319,
     "name": "Retinol",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 320,
     "name": "Vitamin A, RAE",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 321,
     "name": "Carotene, beta",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 322,
     "name": "Carotene, alpha",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 323,
@@ -187,32 +187,32 @@ var nutrient_labels = [
   {
     "id": 325,
     "name": "Vitamin D2 (ergocalciferol)",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 326,
     "name": "Vitamin D3 (cholecalciferol)",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 328,
     "name": "Vitamin D (D2 + D3)",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 334,
     "name": "Cryptoxanthin, beta",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 337,
     "name": "Lycopene",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 338,
     "name": "Lutein + zeaxanthin",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 341,
@@ -282,12 +282,12 @@ var nutrient_labels = [
   {
     "id": 417,
     "name": "Folate, total",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 418,
     "name": "Vitamin B-12",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 421,
@@ -297,32 +297,32 @@ var nutrient_labels = [
   {
     "id": 428,
     "name": "Menaquinone-4",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 429,
     "name": "Dihydrophylloquinone",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 430,
     "name": "Vitamin K",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 431,
     "name": "Folic acid",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 432,
     "name": "Folate, food",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 435,
     "name": "Folate, DFE",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 454,
@@ -432,7 +432,7 @@ var nutrient_labels = [
   {
     "id": 578,
     "name": "Vitamin B-12, added",
-    "unit": "&micro;g"
+    "unit": "\xB5g"
   },
   {
     "id": 601,
@@ -816,7 +816,7 @@ var radar_labels = [
   {
     "id": 320,
     "name": "Vitamin A, RAE",
-    "unit": "&micro;g",
+    "unit": "\xB5g", // microg
     "ratio": 0.4230
   },
   {
@@ -840,7 +840,7 @@ var radar_labels = [
   {
     "id": 430,
     "name": "Vitamin K",
-    "unit": "&micro;g",
+    "unit": "\xB5g",
     "ratio": 0.0758
   }
 ];
