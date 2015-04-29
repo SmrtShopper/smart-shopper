@@ -778,6 +778,36 @@ var radar_labels = [
     "ratio": 0.1101
   },
   {
+    "id": 320,
+    "name": "Vitamin A",
+    "unit": "\xB5g", // microg
+    "ratio": 0.4230
+  },
+  {
+    "id": 401,
+    "name": "Vitamin C",
+    "unit": "mg",
+    "ratio": 0.0608
+  },
+  {
+    "id": 324,
+    "name": "Vitamin D",
+    "unit": "IU",
+    "ratio": 0.1404
+  },
+  {
+    "id": 323,
+    "name": "Vitamin E",
+    "unit": "mg",
+    "ratio": 0.0042
+  },
+  {
+    "id": 430,
+    "name": "Vitamin K",
+    "unit": "\xB5g",
+    "ratio": 0.0758
+  },
+  {
     "id": 301,
     "name": "Calcium",
     "unit": "mg",
@@ -813,34 +843,4 @@ var radar_labels = [
     "unit": "mg",
     "ratio": 0.0007
   },
-  {
-    "id": 320,
-    "name": "Vitamin A, RAE",
-    "unit": "\xB5g", // microg
-    "ratio": 0.4230
-  },
-  {
-    "id": 401,
-    "name": "Vitamin C",
-    "unit": "mg",
-    "ratio": 0.0608
-  },
-  {
-    "id": 324,
-    "name": "Vitamin D",
-    "unit": "IU",
-    "ratio": 0.1404
-  },
-  {
-    "id": 323,
-    "name": "Vitamin E",
-    "unit": "mg",
-    "ratio": 0.0042
-  },
-  {
-    "id": 430,
-    "name": "Vitamin K",
-    "unit": "\xB5g",
-    "ratio": 0.0758
-  }
 ];

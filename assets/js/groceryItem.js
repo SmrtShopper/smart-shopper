@@ -74,6 +74,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       scaleShowLabels : false,
       // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
     }
+
+    $scope.radarSeries = ["Balanced Diet", "Your Diet"];
     
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
@@ -196,16 +198,24 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       $scope.data1 = [[],[]];
       $scope.labels1 = [];
       $scope.nutrients1 = [];
-      $scope.series1 = ["Balanced Diet", "Your Diet"];
-
       var radar1size = 5;
-      for (var i = 0; i < radar1size; i++) {
-        $scope.nutrients1[i] = radar_labels[i];
-        $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
-      }
 
-      console.log($scope.labels1);
-      console.log($scope.nutrients1);
+      $scope.data2 = [[],[]];
+      $scope.labels2 = [];
+      $scope.nutrients2 = [];
+      var radar2size = 5;
+      
+      for (var i = 0; i < radar_labels.length; i++) {
+        if (i < radar1size) {
+          $scope.nutrients1[i] = radar_labels[i];
+          $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
+        }
+        else if (i < radar1size + radar2size) {
+          $scope.nutrients2[i - radar1size] = radar_labels[i];
+          $scope.labels2[i - radar1size] = radar_labels[i].name + ", " + radar_labels[i].unit;
+        }
+
+      }
 
       $scope.data = [];
       $scope.labels = [];
@@ -225,29 +235,32 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         responsive: true,
       };
       if ($scope.alldata != null && $scope.alldata.total != null){
-              $scope.updateGraphs();
+        $scope.updateGraphs();
       }
       $scope.$apply;
     };
 
     $scope.updateGraphs = function(){
-      console.log($scope.alldata);
-      updateRadar($scope.alldata.total.nutrients);
-      updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
+      if ($scope.alldata && $scope.alldata.total) {
+        $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1);
+        $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
+        updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
+      }
+      
     };
 
     $scope.$on('$viewContentLoaded', function() {
       $scope.updateGraphs();
     });
 
-    function updateRadar(nutrientsData) {
+    function updateRadar(nutrientsData, data, nutrients_to_use) {
       if (!nutrientsData) {
         //do something here to indicate no data and prompt to add data
         alert("NO DATA");
         return;
       }
       else {
-        $scope.data1 = [[],[]];
+        data = [[],[]];
         var totalCalories = -1;
         for (var i = 0; i < 7; i++) {
           if (nutrientsData[i].attr_id == 208) {
@@ -258,21 +271,20 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         console.log("total calories: " + totalCalories);
 
         // create goal data and user's data
-        for (var i = 0; i < $scope.nutrients1.length; i++) {
+        for (var i = 0; i < nutrients_to_use.length; i++) {
           for (var j = 0; j < nutrientsData.length; j++) {
-            if (nutrientsData[j].attr_id == $scope.nutrients1[i].id) {
-              var goal = $scope.nutrients1[i].ratio * totalCalories;
-              var data = nutrientsData[j].value / goal;
-              goal = parseFloat((goal).toFixed(2));
-              data = parseFloat((100*data).toFixed(2));
-              $scope.data1[0].push(100);
-              $scope.data1[1].push(data);
+            if (nutrientsData[j].attr_id == nutrients_to_use[i].id) {
+              var goalData = nutrients_to_use[i].ratio * totalCalories;
+              var userData = nutrientsData[j].value / goalData;
+              goalData = parseFloat((goalData).toFixed(2));
+              userData = parseFloat((100*userData).toFixed(2));
+              data[0].push(100);
+              data[1].push(userData);
             }
           }
         }
 
-        console.log($scope.labels1);
-        console.log($scope.data1);
+        return data;
 
       }
     }
