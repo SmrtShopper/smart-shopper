@@ -124,7 +124,10 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         segmentShowStroke: false,
         responsive: true,
       };
-      $scope.updateGraphs();
+      if ($scope.alldata != null && $scope.alldata.total != null){
+              $scope.updateGraphs();
+      }
+
     };
 
     $scope.updateGraphs = function(){
@@ -175,7 +178,9 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
     $scope.deleteItem = function(idx) {
       if ($scope.alldata.results.length == 1){
+        $scope.alldata = [];
         $scope.initializeGraphs();
+        $scope.$digest;
         localStorage.removeItem("grocery");
       }
       else {
