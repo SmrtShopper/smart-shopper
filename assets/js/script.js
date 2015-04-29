@@ -2,17 +2,20 @@ var nutrient_labels = [
   {
     "id": 203,
     "name": "Protein",
-    "unit": "g"
+    "unit": "g",
+    "ratio": 4.53
   },
   {
     "id": 204,
-    "name": "Total lipid (fat)",
-    "unit": "g"
+    "name": "Total fat",
+    "unit": "g",
+    "ratio": 3.50
   },
   {
     "id": 205,
     "name": "Carbohydrates",
-    "unit": "g"
+    "unit": "g",
+    "ratio": 13.20
   },
   {
     "id": 207,
@@ -91,18 +94,21 @@ var nutrient_labels = [
   },
   {
     "id": 291,
-    "name": "Fiber, total dietary",
-    "unit": "g"
+    "name": "Dietary fiber",
+    "unit": "g",
+    "ratio": 1.55
   },
   {
     "id": 301,
-    "name": "Calcium, Ca",
-    "unit": "mg"
+    "name": "Calcium",
+    "unit": "mg",
+    "ratio": 60.62
   },
   {
     "id": 303,
-    "name": "Iron, Fe",
-    "unit": "mg"
+    "name": "Iron",
+    "unit": "mg",
+    "ratio": 0.89
   },
   {
     "id": 304,
@@ -116,23 +122,27 @@ var nutrient_labels = [
   },
   {
     "id": 306,
-    "name": "Potassium, K",
-    "unit": "mg"
+    "name": "Potassium",
+    "unit": "mg",
+    "ratio": 171.99
   },
   {
     "id": 307,
-    "name": "Sodium, Na",
-    "unit": "mg"
+    "name": "Sodium",
+    "unit": "mg",
+    "ratio": 86.85
   },
   {
     "id": 309,
-    "name": "Zinc, Zn",
-    "unit": "mg"
+    "name": "Zinc",
+    "unit": "mg",
+    "ratio": 0.71
   },
   {
     "id": 312,
-    "name": "Copper, Cu",
-    "unit": "mg"
+    "name": "Copper",
+    "unit": "mg",
+    "ratio": 0.07
   },
   {
     "id": 313,
@@ -162,7 +172,8 @@ var nutrient_labels = [
   {
     "id": 320,
     "name": "Vitamin A, RAE",
-    "unit": "&micro;g"
+    "unit": "&micro;g",
+    "ratio": 42.30
   },
   {
     "id": 321,
@@ -176,13 +187,15 @@ var nutrient_labels = [
   },
   {
     "id": 323,
-    "name": "Vitamin E (alpha-tocopherol)",
-    "unit": "mg"
+    "name": "Vitamin E",
+    "unit": "mg",
+    "ratio": 0.42
   },
   {
     "id": 324,
     "name": "Vitamin D",
-    "unit": "IU"
+    "unit": "IU",
+    "ratio": 14.04
   },
   {
     "id": 325,
@@ -251,8 +264,9 @@ var nutrient_labels = [
   },
   {
     "id": 401,
-    "name": "Vitamin C, total ascorbic acid",
-    "unit": "mg"
+    "name": "Vitamin C",
+    "unit": "mg",
+    "ratio": 6.08
   },
   {
     "id": 404,
@@ -306,8 +320,9 @@ var nutrient_labels = [
   },
   {
     "id": 430,
-    "name": "Vitamin K (phylloquinone)",
-    "unit": "&micro;g"
+    "name": "Vitamin K",
+    "unit": "&micro;g",
+    "ratio": 7.58
   },
   {
     "id": 431,
@@ -437,7 +452,8 @@ var nutrient_labels = [
   {
     "id": 601,
     "name": "Cholesterol",
-    "unit": "mg"
+    "unit": "mg",
+    "ratio": 11.01
   },
   {
     "id": 605,
