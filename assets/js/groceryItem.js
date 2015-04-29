@@ -10,6 +10,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     // ];
     $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
 
+    console.log($scope.alldata);
+    
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
       $scope.getTotals(query);
