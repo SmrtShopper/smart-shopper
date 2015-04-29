@@ -11,6 +11,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     function getUID() {
       $.ajax({
             type: "GET",
+            timeout: 10000, 
             url: "http://grocery-server.herokuapp.com/getUID/",
           })
       .done (function(uid, status){
@@ -23,23 +24,31 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
     };
 
-    $scope.id = localStorage.getItem("id") || getUID(); 
-    console.log($scope.id);
-    $.ajax({
+    $scope.id = localStorage.getItem("id");
+    if ($scope.id) {
+      //get all groceries
+      $.ajax({
             type: "GET",
             url: "https://grocery-server.herokuapp.com/getGrocery/",
             data: {
               "login" : $scope.id
             }
           })
-      .done (function(data, status){
-          console.log(data);
-          $scope.alldata = data;
-          console.log($scope.alldata);
-      })
-      .fail (function (response,status){
-         bootbox.alert("Server Down!");
-      });
+          .done (function(data, status){
+              console.log(data);
+              $scope.alldata = data;
+              console.log($scope.alldata);
+              $scope.$apply;
+          })
+          .fail (function (response,status){
+             bootbox.alert("Server Down!");
+          });
+
+    } else {
+        getUID(); 
+    }
+    
+    console.log($scope.id);
 
     console.log($scope.alldata);
     console.log(radar_labels);
@@ -86,7 +95,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           })
       .done (function(response, status){
         alldata = JSON.parse(response);
-        if (alldata.errors == null){
+        if (alldata.error == null){
           $scope.alldata = alldata;
           $scope.updateGraphs();
           $scope.$digest();
