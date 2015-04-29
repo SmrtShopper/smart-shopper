@@ -119,10 +119,34 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       $scope.data1 = [[],[]];
       $scope.labels1 = [];
       $scope.nutrients1 = [];
+      $scope.series1 = ["Balanced Diet", "Your Diet"];
+      $scope.colours1 = [
+        {
+          fillColor: 'rgba(220,220,220,.2)',
+          strokeColor: 'rgba(220,220,220,1)',
+          pointColor: 'rgba(220,220,220,1)',
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+        }, 
+        {
+          fillColor: 'rgba(151,187,205,.2)',
+          strokeColor: 'rgba(151,187,205,1)',
+          pointColor: 'rgba(151,187,205,1)',
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+        }
+      ];
       var radar1size = 5;
       for (var i = 0; i < radar1size; i++) {
         $scope.nutrients1[i] = radar_labels[i];
         $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
+      }
+
+      $scope.radarOptions = {
+        scaleShowLabels : false,
+        // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       }
 
       console.log($scope.labels1);
