@@ -35,10 +35,12 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
             }
           })
           .done (function(data, status){
+              console.log ("I GOT GROCERY");
               console.log(data);
               $scope.alldata = data;
               console.log($scope.alldata);
-              $scope.$apply;
+              $scope.initializeGraphs();
+              $scope.$digest();
           })
           .fail (function (response,status){
              bootbox.alert("Server Down!");
@@ -49,8 +51,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     }
     
     console.log($scope.id);
-
-    console.log($scope.alldata);
     console.log(radar_labels);
 
     // $scope.data1 = [
@@ -102,7 +102,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           $scope.updateGraphs();
           $scope.$digest();
           document.getElementById("grocItem").value = '';
-          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
         else {
           bootbox.alert("No results found!");
@@ -141,7 +140,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           $scope.updateGraphs();
           $scope.$digest();
           document.getElementById("grocItem").value = '';
-          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
         else {
           bootbox.alert("No results found!");
@@ -338,7 +336,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           $scope.updateGraphs();
           $scope.$digest();
           document.getElementById("grocItem").value = '';
-          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
         else {
           bootbox.alert("No results found!");
