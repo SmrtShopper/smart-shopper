@@ -31,35 +31,57 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       var appId = "feab83eb";
       var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
       //search Nutritionix for search results...
-      xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
-      xmlhttp.setRequestHeader("X-APP-ID", appId);
-      xmlhttp.setRequestHeader("X-APP-KEY", appKey);
-      xmlhttp.setRequestHeader("Content-Type", "text/plain");
-      xmlhttp.onreadystatechange=function() {
-        if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          alldata = JSON.parse(xmlhttp.responseText);
+      $.ajax({
+            type: "POST",
+            url: "https://api.nutritionix.com/v2/natural/",
+            data: allitemstr,
+            headers:
+              {
+                "X-APP-ID" : appId,
+                "X-APP-KEY" : appKey,
+                "Content-Type" : "text/plain"
+              },
+            dataType: "text"
+          })
+      .done (function(response, status){
+        alldata = JSON.parse(response);
+        $scope.alldata = alldata;
+        $scope.updateGraphs();
+        $scope.$digest();
+        document.getElementById("grocItem").value = '';
+        localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+      })
+      .fail (function (response,status){
+         bootbox.alert("No results found!");
+      });
+      // xmlhttp = new XMLHttpRequest();
+      // xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
+      // xmlhttp.setRequestHeader("X-APP-ID", appId);
+      // xmlhttp.setRequestHeader("X-APP-KEY", appKey);
+      // xmlhttp.setRequestHeader("Content-Type", "text/plain");
+      //   if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
+      //     alldata = JSON.parse(xmlhttp.responseText);
 
-          // $scope.alldata = $scope.alldata.map(function(data) {
-          //   return data.map(function (y) {
-          //     console.log(y);
-          //     return y;
-          //   });
-          // });
+      //     // $scope.alldata = $scope.alldata.map(function(data) {
+      //     //   return data.map(function (y) {
+      //     //     console.log(y);
+      //     //     return y;
+      //     //   });
+      //     // });
 
 
-          $scope.alldata = alldata;
-          $scope.updateGraphs();
-          $scope.$digest();
-          document.getElementById("grocItem").value = '';
-          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
-        } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
-            bootbox.alert("No results found!");
-            return;
-        }
+      //     $scope.alldata = alldata;
+      //     $scope.updateGraphs();
+      //     $scope.$digest();
+      //     document.getElementById("grocItem").value = '';
+      //     localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+      //   } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
+      //       bootbox.alert("No results found!");
+      //       return;
+      //   }
 
-      }
-      xmlhttp.send(allitemstr);
+      // }
+      // xmlhttp.send(allitemstr);
     };
 
     $scope.sendtophone = function(){
