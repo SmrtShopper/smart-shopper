@@ -11,7 +11,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     function getUID() {
       $.ajax({
             type: "GET",
-            url: "https://grocery-server.herokuapp.com/getUID/",
+            url: "http://grocery-server.herokuapp.com/getUID/",
           })
       .done (function(data, status){
           localStorage.setItem("id", data);
@@ -22,15 +22,37 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       });
 
     };
-    
-    $scope.id = localStorage.getItem("id") || getUID();
-    $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
+
+    $scope.id = localStorage.getItem("id") || getUID(); 
     
     console.log($scope.id);
 
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
-      $scope.getTotals(query);
+      //$scope.getTotals(query);
+      $.ajax({
+            type: "POST",
+            url: "http://grocery-server.herokuapp.com/addGrocery/",
+            data: {login: $scope.id, grocery: query},
+            dataType: "text"
+          })
+      .done (function(response, status){
+        alldata = JSON.parse(response);
+        if (alldata.errors == null){
+          $scope.alldata = alldata;
+          $scope.updateGraphs();
+          $scope.$digest();
+          document.getElementById("grocItem").value = '';
+          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        }
+        else {
+          bootbox.alert("No results found!");
+        }
+        
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
       document.getElementById("grocItem").value = '';
 
     };
@@ -50,7 +72,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       $.ajax({
             type: "POST",
             url: "https://grocery-server.herokuapp.com/addGrocery/",
-            data: {login: '1', grocery: allitemstr},
+            data: {login: uid, grocery: allitemstr},
             dataType: "text"
           })
       .done (function(response, status){
@@ -123,6 +145,21 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     };
 
     $scope.initializeGraphs = function() {
+      $.ajax({
+            type: "GET",
+            url: "https://grocery-server.herokuapp.com/getGrocery/",
+            data: {
+              "login" : $scope.id
+            }
+          })
+      .done (function(data, status){
+          console.log(data);
+          $scope.alldata = data;
+          console.log($scope.alldata);
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
 
       $scope.data = [];
       $scope.labels = [];
@@ -144,7 +181,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       if ($scope.alldata != null && $scope.alldata.total != null){
               $scope.updateGraphs();
       }
-
+      $scope.$apply;
     };
 
     $scope.updateGraphs = function(){
@@ -194,19 +231,29 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
 
     $scope.deleteItem = function(idx) {
-      if ($scope.alldata.results.length == 1){
-        $scope.alldata = [];
-        $scope.initializeGraphs();
-        $scope.$digest;
-        localStorage.removeItem("grocery");
-      }
-      else {
-        $scope.alldata.results.splice(idx, 1);
-        //get records of all totals again
-        $scope.getTotals("");
-        localStorage.setItem("grocery", JSON.stringify($scope.alldata));
-        $scope.updateGraphs();
-      }
+     $.ajax({
+            type: "POST",
+            url: "http://grocery-server.herokuapp.com/deleteGrocery/",
+            data: {login: $scope.id, idx: idx},
+            dataType: "text"
+          })
+      .done (function(response, status){
+        alldata = JSON.parse(response);
+        if (alldata.errors == null){
+          $scope.alldata = alldata;
+          $scope.updateGraphs();
+          $scope.$digest();
+          document.getElementById("grocItem").value = '';
+          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        }
+        else {
+          bootbox.alert("No results found!");
+        }
+        
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
       
     };
 
