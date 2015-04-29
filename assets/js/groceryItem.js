@@ -343,7 +343,30 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       }
       recognition.start();
     };
+
+    $scope.clearList = function() {
+      $.ajax({
+            type: "POST",
+            url: "https://grocery-server.herokuapp.com/deleteAll/",
+            data: {login: id},
+            dataType: "text"
+          })
+      .done (function(response, status){
+        alldata = JSON.parse(response);
+        if (alldata.error == null){
+          $scope.alldata = alldata;
+          $scope.updateGraphs();
+          $scope.$digest();
+          document.getElementById("grocItem").value = '';
+          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        }
+        else {
+          bootbox.alert("No results found!");
+        }
+        
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
+    };
   }]);
-
-
-
