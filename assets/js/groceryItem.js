@@ -8,18 +8,26 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     //   {fields:{item_name: 'cheese'}},
     //   {fields:{item_name: 'broccoli'}}
     // ];
-    $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
+    function getUID() {
+      $.ajax({
+            type: "GET",
+            url: "https://grocery-server.herokuapp.com/getUID/",
+          })
+      .done (function(data, status){
+          localStorage.setItem("id", data);
+          return data;
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
 
-    console.log($scope.alldata);
-    console.log(radar_labels);
-
-    // $scope.data1 = [
-    //   [1, 2, 5, 2, 7],
-    //   [5, 3, 4, 2, 8]
-    // ];
-
-    // $scope.labels1 = ["a", "b", "c", "d", "e"];
+    };
     
+    $scope.id = localStorage.getItem("id") || getUID();
+    $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || [];
+    
+    console.log($scope.id);
+
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
       $scope.getTotals(query);
