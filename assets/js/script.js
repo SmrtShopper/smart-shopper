@@ -11,7 +11,7 @@ var nutrient_labels = [
   },
   {
     "id": 205,
-    "name": "Carbohydrates",
+    "name": "Carbs",
     "unit": "g"
   },
   {
@@ -761,7 +761,7 @@ var radar_labels = [
   },
   {
     "id": 205,
-    "name": "Carbohydrates",
+    "name": "Carbs",
     "unit": "g",
     "ratio": 0.1320
   },
