@@ -122,7 +122,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       var radar1size = 5;
       for (var i = 0; i < radar1size; i++) {
         $scope.nutrients1[i] = radar_labels[i];
-        $scope.labels1[i] = radar_labels[i].name;
+        $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
       }
 
       console.log($scope.labels1);
