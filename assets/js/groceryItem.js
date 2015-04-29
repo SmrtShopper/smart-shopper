@@ -26,7 +26,16 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     $scope.id = localStorage.getItem("id") || getUID(); 
     
     console.log($scope.id);
+    console.log($scope.alldata);
+    console.log(radar_labels);
 
+    // $scope.data1 = [
+    //   [1, 2, 5, 2, 7],
+    //   [5, 3, 4, 2, 8]
+    // ];
+
+    // $scope.labels1 = ["a", "b", "c", "d", "e"];
+    
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
       //$scope.getTotals(query);
@@ -161,6 +170,18 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
          bootbox.alert("Server Down!");
       });
 
+      $scope.data1 = [[],[]];
+      $scope.labels1 = [];
+      $scope.nutrients1 = [];
+      var radar1size = 5;
+      for (var i = 0; i < radar1size; i++) {
+        $scope.nutrients1[i] = radar_labels[i];
+        $scope.labels1[i] = radar_labels[i].name;
+      }
+
+      console.log($scope.labels1);
+      console.log($scope.nutrients1);
+
       $scope.data = [];
       $scope.labels = [];
       for (var i = 0; i < 860; i++) {
@@ -186,14 +207,52 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
 
     $scope.updateGraphs = function(){
 
-      get_data_and_labels($scope.alldata.total.nutrients, "g", 0.3);
+      updateRadar($scope.alldata.total.nutrients);
+      updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
     };
 
     $scope.$on('$viewContentLoaded', function() {
       $scope.updateGraphs();
     });
 
-    function get_data_and_labels(nutrientsData, unit, minValue) {
+    function updateRadar(nutrientsData) {
+      if (!nutrientsData) {
+        //do something here to indicate no data and prompt to add data
+        alert("NO DATA");
+        return;
+      }
+      else {
+        $scope.data1 = [[],[]];
+        var totalCalories = -1;
+        for (var i = 0; i < 7; i++) {
+          if (nutrientsData[i].attr_id == 208) {
+            totalCalories = nutrientsData[i].value;
+            break;
+          }
+        }
+        console.log("total calories: " + totalCalories);
+
+        // create goal data and user's data
+        for (var i = 0; i < $scope.nutrients1.length; i++) {
+          for (var j = 0; j < nutrientsData.length; j++) {
+            if (nutrientsData[j].attr_id == $scope.nutrients1[i].id) {
+              var goal = $scope.nutrients1[i].ratio * totalCalories;
+              var data = nutrientsData[j].value / goal;
+              goal = parseFloat((goal).toFixed(2));
+              data = parseFloat((100*data).toFixed(2));
+              $scope.data1[0].push(100);
+              $scope.data1[1].push(data);
+            }
+          }
+        }
+
+        console.log($scope.labels1);
+        console.log($scope.data1);
+
+      }
+    }
+
+    function updateDoughnut(nutrientsData, unit, minValue) {
       // nutrientsData is an array, unit is a string, minValue is a float
 
       if (!nutrientsData) {
@@ -201,8 +260,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         alert("NO DATA");
         return;
       }
-
       else {
+
         var id_index = -1;
         for (var i = 0; i < nutrientsData.length; i++) {
           if (nutrientsData[i].unit == unit && nutrientsData[i].value > minValue) {
@@ -210,20 +269,9 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
             $scope.data[id_index] = parseFloat( (nutrientsData[i].value).toFixed(2) );
           }
         }
-      //   var numEmpty = 0;
-      //   var numFilled = 0;
-      //   for (var i = 0; i < $scope.data.length; i++) {
-      //     if ($scope.data[i] == 0) {
-      //       numEmpty++;
-      //     }
-      //     else {
-      //       numFilled++;
-      //     }
-      //   }
-      //   console.log(numFilled + " filled, " + numEmpty + " empty.");
 
 
-        
+
       }
 
     };
