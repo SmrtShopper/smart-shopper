@@ -348,7 +348,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       $.ajax({
             type: "POST",
             url: "https://grocery-server.herokuapp.com/deleteAll/",
-            data: {login: id},
+            data: {login: $scope.id},
             dataType: "text"
           })
       .done (function(response, status){
