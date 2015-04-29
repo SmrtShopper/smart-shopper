@@ -13,9 +13,9 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
             type: "GET",
             url: "http://grocery-server.herokuapp.com/getUID/",
           })
-      .done (function(data, status){
-          localStorage.setItem("id", data);
-          return data;
+      .done (function(uid, status){
+          localStorage.setItem("id", uid);
+          return uid;
       })
       .fail (function (response,status){
          bootbox.alert("Server Down!");
@@ -24,8 +24,23 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     };
 
     $scope.id = localStorage.getItem("id") || getUID(); 
-    
     console.log($scope.id);
+    $.ajax({
+            type: "GET",
+            url: "https://grocery-server.herokuapp.com/getGrocery/",
+            data: {
+              "login" : $scope.id
+            }
+          })
+      .done (function(data, status){
+          console.log(data);
+          $scope.alldata = data;
+          console.log($scope.alldata);
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
+
     console.log($scope.alldata);
     console.log(radar_labels);
 
@@ -154,22 +169,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     };
 
     $scope.initializeGraphs = function() {
-      $.ajax({
-            type: "GET",
-            url: "https://grocery-server.herokuapp.com/getGrocery/",
-            data: {
-              "login" : $scope.id
-            }
-          })
-      .done (function(data, status){
-          console.log(data);
-          $scope.alldata = data;
-          console.log($scope.alldata);
-      })
-      .fail (function (response,status){
-         bootbox.alert("Server Down!");
-      });
-
       $scope.data1 = [[],[]];
       $scope.labels1 = [];
       $scope.nutrients1 = [];
@@ -230,7 +229,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     };
 
     $scope.updateGraphs = function(){
-
+      console.log($scope.alldata);
       updateRadar($scope.alldata.total.nutrients);
       updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
     };
