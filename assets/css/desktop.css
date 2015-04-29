@@ -60,6 +60,13 @@ html {
   border-color: #fff;
 }
 
+#clear_list {
+  border-color: #e74c3c;
+  margin-right: 10px;
+  background-color: #e74c3c;
+  color: #FFFFFF;
+}
+
 #search_icon {
   padding-left: 20px;
   padding-right: 20px;
