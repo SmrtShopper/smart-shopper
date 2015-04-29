@@ -367,7 +367,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           $scope.updateGraphs();
           $scope.$digest();
           document.getElementById("grocItem").value = '';
-          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
         }
         else {
           bootbox.alert("No results found!");
