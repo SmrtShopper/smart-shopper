@@ -10,7 +10,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     // ];
     $scope.alldata = JSON.parse(localStorage.getItem("grocery")) || null;
 
-    console.log($scope.alldata);
     
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
@@ -41,14 +40,20 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           })
       .done (function(response, status){
         alldata = JSON.parse(response);
-        $scope.alldata = alldata;
-        $scope.updateGraphs();
-        $scope.$digest();
-        document.getElementById("grocItem").value = '';
-        localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        if (alldata.errors == null){
+          $scope.alldata = alldata;
+          $scope.updateGraphs();
+          $scope.$digest();
+          document.getElementById("grocItem").value = '';
+          localStorage.setItem("grocery", JSON.stringify($scope.alldata));
+        }
+        else {
+          bootbox.alert("No results found!");
+        }
+        
       })
       .fail (function (response,status){
-         bootbox.alert("No results found!");
+         bootbox.alert("Server Down!");
       });
       // xmlhttp = new XMLHttpRequest();
       // xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
