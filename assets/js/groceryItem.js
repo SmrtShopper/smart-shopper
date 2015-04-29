@@ -98,7 +98,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       .done (function(response, status){
         alldata = JSON.parse(response);
         if (alldata.error == null){
-          if (alldata = "{}") {
+          if (alldata == "{}") {
             bootbox.alert("Please enter an item!");
           } else {
             $scope.alldata = alldata;
