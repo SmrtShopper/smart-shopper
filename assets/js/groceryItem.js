@@ -33,14 +33,8 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       //search Nutritionix for search results...
       $.ajax({
             type: "POST",
-            url: "https://api.nutritionix.com/v2/natural/",
-            data: allitemstr,
-            headers:
-              {
-                "X-APP-ID" : appId,
-                "X-APP-KEY" : appKey,
-                "Content-Type" : "text/plain"
-              },
+            url: "https://grocery-server.herokuapp.com/addGrocery/",
+            data: {login: '1', grocery: allitemstr},
             dataType: "text"
           })
       .done (function(response, status){
