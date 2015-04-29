@@ -47,7 +47,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           });
 
     } else {
-        getUID(); 
+        $scope.id = getUID(); 
     }
     
     console.log($scope.id);
