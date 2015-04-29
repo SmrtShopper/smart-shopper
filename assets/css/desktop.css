@@ -1,3 +1,16 @@
+html {
+  -webkit-overflow-scrolling: touch;
+  transition: background-image 0.3s ease;
+  -webkit-transition: background-image 0.3s ease;
+}
+
+::-webkit-scrollbar { 
+  display: none; 
+}
+
+.header {
+  display: -webkit-flex;
+}
 .container {
 	max-width: 980px;
 	margin: 20px auto;
