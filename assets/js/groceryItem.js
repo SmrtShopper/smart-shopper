@@ -37,7 +37,6 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
           .done (function(data, status){
               console.log(data);
               $scope.alldata = data;
-              $scope.
               console.log($scope.alldata);
               $scope.$apply;
           })
