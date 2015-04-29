@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   <title>Smart Shopper</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
   <!-- Bootstrap -->
@@ -25,7 +23,6 @@
 <script type="text/javascript" src="assets/js/script.js"></script>
 <script type="text/javascript" src="assets/js/angular-chart.min.js"></script>
 <script type="text/javascript" src="assets/js/groceryItem.js"></script>
-<script src="bower_components/inobounce/inobounce.min.js"></script>
 
 
 <script type="text/javascript" src="assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
@@ -33,7 +30,7 @@
 <script src="node_modules/bootbox/bootbox.min.js"></script>  
 <!-- <script type="text/javascript" src="assets/js/fb.js"></script> -->
 
-<nav class="navbar navbar-default header" >
+<nav class="navbar navbar-default" >
   <div class="container-fluid">
     <div class="navbar-header">
        
@@ -47,11 +44,11 @@
 
 
 
-<div class="container wrapper" ng-controller="GroceryController">
+<div class="container" ng-controller="GroceryController">
 
 
   
-  <ul class = "list-group col-xs-12 col-md-6 scrollable" id="grocery_widget">
+  <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget">
     <li class= "list-group-item active">
       <span class="list-group-item-heading">Grocery List</span>
       <span class="btn-group-xs">
@@ -95,14 +92,24 @@
   </ul>
 
   <div id="charts" class="col-xs-12 col-md-6 col-offset-3">
+    <div class="panel panel-default" data-ng-init="initializeGraphs()">
+      <div class="panel-heading">Nutrients Fit</div>
+      <div class="panel-body">
+        <canvas id="radar" class="chart chart-radar" data="data1" labels="labels1">
+        </canvas>
+      </div>
+    </div>
+
     <div class="panel panel-default">
       <div class="panel-heading">Gram chart</div>
       <div class="panel-body">
-        <canvas id="doughnut" class="chart chart-doughnut" data-ng-init="initializeGraphs()" data="data" labels="labels" options="options">
+        <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels" options="options">
         </canvas>
       </div>
     </div>
   </div>
+
+
 
  
 
