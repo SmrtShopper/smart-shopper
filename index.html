@@ -96,23 +96,25 @@
   </ul>
 
 
-  <div id="charts" class="col-xs-12 col-md-6 col-offset-3">
-    <div class="panel panel-default" data-ng-init="initializeGraphs()">
+  <div id="charts" class="col-xs-12 col-md-6 col-offset-3" data-ng-init="initializeGraphs()">
+    <div class="panel panel-default">
       <div class="panel-heading">Macronutrients</div>
       <div class="panel-body">
-        <canvas id="radar" class="chart chart-radar" data="data1" labels="labels1" options="radarOptions" series="series1" colours="radarColors" legend="true">
+        <canvas id="radar" class="chart chart-radar" data="data1" labels="labels1" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
         </canvas>
       </div>
+    </div>  
     
-
-<!--       <div class="panel-heading">Vitamins</div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Vitamins</div>
       <div class="panel-body">
-        <canvas id="radar" class="chart chart-radar" data="data2" labels="labels2" options="radarOptions" series="series2" colours="radarColors" legend="true">
+        <canvas id="radar" class="chart chart-radar" data="data2" labels="labels2" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
         </canvas>
       </div>
-      </div> -->
+    </div>
 
 
+    <div class="panel panel-default">
       <div class="panel-heading">Gram chart</div>
       <div class="panel-body">
         <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels" options="options" >
