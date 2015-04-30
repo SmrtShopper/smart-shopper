@@ -20,6 +20,10 @@ html {
   color: #7E7E7E;
 }
 
+#chart-buttons {
+  margin-bottom: 15px;
+}
+
 .panel-heading {
   font-weight: bold;
 }
@@ -56,45 +60,6 @@ html {
   border-radius: 5px;
 }
 
-.carousel-caption {
-  padding: 0px;
-  top: 0px;
-  color: #333;
-  text-shadow: none;
-  font-weight: bold;
-}
-
-.carousel-inner {
-  margin-bottom: 20px;
-}
-
-.carousel-inner .item {
-  padding-top: 60px;
-}
-
-.carousel-control {
-  left: 15px;
-  color: #333;
-  text-shadow: none;
-}
-
-.carousel-control:hover {
-  color: #ABABAB;
-}
-
-.carousel-control .glyphicon {
-  position: absolute;
-  top: 50%;
-}
-
-.carousel-control.left {
-  background-image: none;
-}
-
-.carousel-control.right {
-  right: 15px;
-  background-image: none;
-}
 
 #send_to_phone {
   border-color: #fff;

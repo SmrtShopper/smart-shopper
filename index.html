@@ -44,7 +44,7 @@
 
 
 
-<div class="container" ng-controller="GroceryController">
+<div class="container" ng-controller="GroceryController" >
 
 
   
@@ -98,31 +98,46 @@
 
 
   <div id="charts" class="col-xs-12 col-md-6 col-offset-3">
-    <div class="panel panel-default">
+    <div id="chart-buttons" class="btn-group btn-group-lg">
+      <button type="button" class="btn btn-default" ng-click="show1()">Macronutrients</button>
+      <button type="button" class="btn btn-default" ng-click="show2()">Vitamins</button>
+      <button type="button" class="btn btn-default" ng-click="show3()">Minerals</button>
+      <button type="button" class="btn btn-default" ng-click="show4()">Grams</button>
+    </div>
+
+    <div id="radar1" class="panel panel-default">
       <div class="panel-heading">Macronutrients</div>
       <div class="panel-body">
-          <canvas id="radar1" class="chart chart-radar" data="data1" labels="labels1" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
+          <canvas  class="chart chart-radar" data="data1" labels="labels1" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
           </canvas>
 
       </div>
     </div>  
     
-    <div class="panel panel-default">
+    <div id="radar2" class="panel panel-default">
       <div class="panel-heading">Vitamins</div>
       <div class="panel-body">
-          <canvas id="radar2" class="chart chart-radar" data="data2" labels="labels2" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
+          <canvas class="chart chart-radar" data="data2" labels="labels2" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
           </canvas>
       </div>
     </div>
 
+    <div id="radar3" class="panel panel-default">
+      <div class="panel-heading">Minerals</div>
+      <div class="panel-body">
+          <canvas class="chart chart-radar" data="data3" labels="labels3" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
+          </canvas>
+      </div>
+    </div>
 
-    <div class="panel panel-default">
+    <div id="doughnut" class="panel panel-default">
       <div class="panel-heading">Gram chart</div>
       <div class="panel-body">
-        <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels" options="options" >
+        <canvas class="chart chart-doughnut" data="data" labels="labels" options="options" >
         </canvas>
       </div>
     </div>
+
   </div>
 
 
