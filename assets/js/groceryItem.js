@@ -255,6 +255,7 @@ angular.module('smartShopper', ["chart.js"])
       };
       if ($scope.alldata != null && $scope.alldata.total != null){
         $scope.updateGraphs();
+        console.log('ah');
       }
       $scope.$apply;
     };
@@ -265,6 +266,7 @@ angular.module('smartShopper', ["chart.js"])
         $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
       } else {
+        console.log("before: " + $scope.data1)
         $("#this-carousel-id").remove();
 
         $.get('carousel.html', function(data) {
@@ -321,7 +323,6 @@ angular.module('smartShopper', ["chart.js"])
                bootbox.alert("Server Down!");
             });
         });
-        console.log($scope.radarSeries);
         
       }
       
