@@ -33,6 +33,7 @@ angular.module('smartShopper', ["chart.js"])
                 $scope.$digest();
             })
             .fail (function (response,status){
+               console.log(status)
                bootbox.alert("setupid Server Down!");
             });
 
