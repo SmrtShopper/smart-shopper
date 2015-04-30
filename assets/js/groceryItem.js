@@ -17,7 +17,7 @@ angular.module('smartShopper', ["chart.js"])
     //   {fields:{item_name: 'broccoli'}}
     // ];
 
-       $scope.setupID = function () {
+    $scope.setupID = function () {
       if ($scope.id) {
         //get all groceries
         $.ajax({
@@ -54,7 +54,7 @@ angular.module('smartShopper', ["chart.js"])
 
 
 
-    }
+    };
    
 
     $scope.getUID = function() {
@@ -68,10 +68,12 @@ angular.module('smartShopper', ["chart.js"])
           $scope.id = uid;
           console.log("GOT NEW ID");
           console.log($scope.id);
+          $scope.alldata = "{}";
           $scope.initializeGraphs();
           // $scope.updateGraphs();
           // $scope.$digest;
           $scope.$digest;
+          console.log("done getuid");
       })
       .fail (function (response,status){
          bootbox.alert("getuid Server Down!");
@@ -308,6 +310,7 @@ angular.module('smartShopper', ["chart.js"])
       }
       // $scope.$apply;
       $scope.$digest;
+      console.log ("done init graphs");
     };
 
     $scope.updateGraphs = function(){
