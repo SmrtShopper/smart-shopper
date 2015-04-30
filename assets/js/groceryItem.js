@@ -271,7 +271,7 @@ angular.module('smartShopper', ["chart.js"])
           var fileContents = data;
           $("#carousel-container").prepend(fileContents);
         })
-        $('#carousel-container').ready(function() {
+        $(document).ready(function() {
           $('.carousel').carousel({
             interval: false
           });
@@ -321,7 +321,7 @@ angular.module('smartShopper', ["chart.js"])
                bootbox.alert("Server Down!");
             });
         });
-
+        console.log($scope.radarSeries);
         
       }
       
