@@ -266,8 +266,9 @@ angular.module('smartShopper', ["chart.js"])
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
       } else {
         $("#this-carousel-id").remove();
+        var fileContents;
         $.get('carousel.html', function(data) {
-          var fileContents = data;
+          fileContents = data;
         });
         console.log(fileContents);
         $("#this-carousel-id").prepend(fileContents);
