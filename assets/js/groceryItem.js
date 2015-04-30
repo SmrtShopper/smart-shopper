@@ -264,6 +264,26 @@ angular.module('smartShopper', ["chart.js"])
         $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1);
         $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
+      } else {
+        $.ajax({
+            type: "GET",
+            url: "https://grocery-server.herokuapp.com/getGrocery/",
+            data: {
+              "login" : $scope.id
+            }
+          })
+          .done (function(data, status){
+              console.log ("I GOT GROCERY");
+              console.log(data);
+              $scope.alldata = data;
+              console.log($scope.alldata);
+              $scope.initializeGraphs();
+              $scope.$digest();
+          })
+          .fail (function (response,status){
+             bootbox.alert("Server Down!");
+          });
+          $("#radar").load("file:///home/ethowitz/Documents/Tufts/comp20/comp20-spring2015-team9/index.html");
       }
       
     };
