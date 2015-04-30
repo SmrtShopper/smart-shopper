@@ -16,21 +16,6 @@ angular.module('smartShopper', ["chart.js"])
     //   {fields:{item_name: 'cheese'}},
     //   {fields:{item_name: 'broccoli'}}
     // ];
-    function getUID() {
-      $.ajax({
-            type: "GET",
-            timeout: 10000, 
-            url: "http://grocery-server.herokuapp.com/getUID/",
-          })
-      .done (function(uid, status){
-          localStorage.setItem("id", uid);
-          return uid;
-      })
-      .fail (function (response,status){
-         bootbox.alert("Server Down!");
-      });
-
-    };
 
     $scope.id = localStorage.getItem("id");
     if (location.search.substring('?').split('=').length == 2 && location.search.substring('?').split('=')[0] == '?uid') {
@@ -76,7 +61,7 @@ angular.module('smartShopper', ["chart.js"])
           });
 
     } else {
-        $scope.id = getUID(); 
+        $scope.id = $scope.getUID(); 
     }
     
     console.log($scope.id);
@@ -114,6 +99,22 @@ angular.module('smartShopper', ["chart.js"])
     }
 
     $scope.radarSeries = ["Balanced Diet", "Your Diet"];
+
+    $scope.getUID = function() {
+      $.ajax({
+            type: "GET",
+            timeout: 10000, 
+            url: "http://grocery-server.herokuapp.com/getUID/",
+          })
+      .done (function(uid, status){
+          localStorage.setItem("id", uid);
+          return uid;
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
+
+    };
     
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
