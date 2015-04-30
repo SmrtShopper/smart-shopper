@@ -202,27 +202,39 @@ angular.module('smartShopper', ["chart.js"])
     // };
 
     $scope.sendtophone = function(){
-      bootbox.prompt("Please enter your phone number", function(result) {
-        if (result === null) {
-
-        }
-        else {
-          var allitemstr = '';
-          if ($scope.alldata.results) {
-           for (var i = 0; i < $scope.alldata.results.length; i++) {
-              allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
-            }
+      num = localStorage.getItem("phone");
+      bootbox.prompt({
+        title: "Please enter your phone number",
+        value: num,
+        callback: function(result) {
+          if (result === null) {
+            //ignore no input
           }
-          $.ajax({
-            type: "POST",
-            url: "http://textbelt.com/text",
-            data: {number:result, message:allitemstr},
-            success: bootbox.alert("Message Sent!"),
-            dataType: "text"
-          });
+          else {
+            num = result;
+            num = localStorage.setItem("phone", num); 
+
+            var allitemstr = '';
+            if ($scope.alldata.results) {
+             for (var i = 0; i < $scope.alldata.results.length; i++) {
+                allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
+              }
+            }
+
+            address = location.origin + location.pathname + "?uid=" + $scope.id;
+            allitemstr = allitemstr + '\n' + address;
+
+            $.ajax({
+                  type: "POST",
+                  url: "http://textbelt.com/text",
+                  data: {number:num, message:allitemstr},
+                  success: bootbox.alert("Message Sent!"),
+                  dataType: "text"
+           }); 
+          }
         }
-        
       });
+
       
     };
 
