@@ -8,7 +8,7 @@ html {
   display: none; 
 }
 
-@media only screen and (min-device-width: 600px)
+@media only screen and (min-device-width: 601px)
 and (max-width: 1200px) {
 
   #chart-buttons .btn-default {
@@ -18,12 +18,23 @@ and (max-width: 1200px) {
   }
 }
 
-@media screen and (max-width: 600px) {
-  #clear_list span {
-    display: none;
+@media only screen and (min-device-width: 401px)
+and (max-width: 600px) {
+
+  #chart-buttons .btn-default {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
   }
 
   #send_to_phone {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  #clear_list span {
     display: none;
   }
 
