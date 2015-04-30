@@ -283,7 +283,7 @@ angular.module('smartShopper', ["chart.js"])
           .fail (function (response,status){
              bootbox.alert("Server Down!");
           });
-          $("#radar").load("file:///home/ethowitz/Documents/Tufts/comp20/comp20-spring2015-team9/index.html");
+          $("#radar").load("index.html");
       }
       
     };
