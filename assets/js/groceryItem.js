@@ -267,6 +267,13 @@ angular.module('smartShopper', ["chart.js"])
       } else {
         $("#this-carousel-id").load("carousel.html #this-carousel-id");
 
+        
+        $(document).ready(function(){
+          $('.carousel').carousel({
+            interval: false
+          });
+        });
+        
         $scope.radarColors = [
           {
             fillColor: 'rgba(220,220,220,.2)',
@@ -292,7 +299,7 @@ angular.module('smartShopper', ["chart.js"])
         }
 
         $scope.radarSeries = ["Balanced Diet", "Your Diet"];
-        
+
         $.ajax({
             type: "GET",
             url: "https://grocery-server.herokuapp.com/getGrocery/",
