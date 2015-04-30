@@ -283,7 +283,7 @@ angular.module('smartShopper', ["chart.js"])
           .fail (function (response,status){
              bootbox.alert("Server Down!");
           });
-          $("#radar").load("index.html");
+          $("#this-carousel-id").load("carousel.html");
       }
       
     };
