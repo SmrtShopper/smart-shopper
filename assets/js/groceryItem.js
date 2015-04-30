@@ -271,6 +271,11 @@ angular.module('smartShopper', ["chart.js"])
       $scope.labels2 = [];
       $scope.nutrients2 = [];
       var radar2size = 5;
+
+      $scope.data3 = [[],[]];
+      $scope.labels3 = [];
+      $scope.nutrients3 = [];
+      var radar3size = 6;
       
       for (var i = 0; i < radar_labels.length; i++) {
         if (i < radar1size) {
@@ -280,6 +285,11 @@ angular.module('smartShopper', ["chart.js"])
         else if (i < radar1size + radar2size) {
           $scope.nutrients2[i - radar1size] = radar_labels[i];
           $scope.labels2[i - radar1size] = radar_labels[i].name + ", " + radar_labels[i].unit;
+        }
+        else if (i < radar1size + radar2size + radar3size) {
+          var offset = radar2size + radar3size;
+          $scope.nutrients3[i - offset] = radar_labels[i];
+          $scope.labels3[i - offset] = radar_labels[i].name + ", " + radar_labels[i].unit;
         }
 
       }
@@ -314,6 +324,7 @@ angular.module('smartShopper', ["chart.js"])
       if ($scope.alldata && $scope.alldata.total) {
         $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1);
         $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
+        $scope.data3 = updateRadar($scope.alldata.total.nutrients, $scope.data3, $scope.nutrients3);
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
       } 
     };
