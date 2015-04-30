@@ -45,6 +45,9 @@ and (max-width: 600px) {
   }
 }
 
+.btn:focus {
+  outline: none;
+}
 
 
 .header {
