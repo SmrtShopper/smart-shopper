@@ -65,7 +65,6 @@ angular.module('smartShopper', ["chart.js"])
       .done (function(uid, status){
           localStorage.setItem("id", uid);
           $scope.id = uid;
-
           console.log("GOT NEW ID");
           console.log($scope.id);
           $scope.initializeGraphs();
