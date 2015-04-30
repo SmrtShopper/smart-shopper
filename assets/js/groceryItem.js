@@ -71,7 +71,7 @@ angular.module('smartShopper', ["chart.js"])
           $scope.initializeGraphs();
           // $scope.updateGraphs();
           // $scope.$digest;
-          $scope.$apply;
+          $scope.$digest;
       })
       .fail (function (response,status){
          bootbox.alert("Server Down!");
