@@ -33,7 +33,7 @@ angular.module('smartShopper', ["chart.js"])
                 $scope.$digest();
             })
             .fail (function (response,status){
-               bootbox.alert("Server Down!");
+               bootbox.alert("setupid Server Down!");
             });
 
       } else {
@@ -73,7 +73,7 @@ angular.module('smartShopper', ["chart.js"])
           $scope.$digest;
       })
       .fail (function (response,status){
-         bootbox.alert("Server Down!");
+         bootbox.alert("getuid Server Down!");
       });
 
     };
@@ -101,7 +101,7 @@ angular.module('smartShopper', ["chart.js"])
               $scope.setupID();
           })
           .fail (function (response,status){
-             bootbox.alert("Server Down!");
+             bootbox.alert("init Server Down!");
       });
     } else {
       console.log("No ID in URL");
@@ -139,7 +139,7 @@ angular.module('smartShopper', ["chart.js"])
         
       })
       .fail (function (response,status){
-         bootbox.alert("Server Down!");
+         bootbox.alert("search Server Down!");
       });
       document.getElementById("grocItem").value = '';
 
@@ -406,7 +406,7 @@ angular.module('smartShopper', ["chart.js"])
         
       })
       .fail (function (response,status){
-         bootbox.alert("Server Down!");
+         bootbox.alert("deleteitem Server Down!");
       });
       
     };
@@ -446,7 +446,7 @@ angular.module('smartShopper', ["chart.js"])
         
       })
       .fail (function (response,status){
-         bootbox.alert("Server Down!");
+         bootbox.alert("clearlist Server Down!");
       });
     };
 
