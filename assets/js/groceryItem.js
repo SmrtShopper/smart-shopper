@@ -269,6 +269,7 @@ angular.module('smartShopper', ["chart.js"])
         var fileContents;
         $.get('carousel.html', function(data) {
           fileContents = data;
+          console.log(fileContents);
         });
         console.log(fileContents);
         $("#this-carousel-id").prepend(fileContents);
