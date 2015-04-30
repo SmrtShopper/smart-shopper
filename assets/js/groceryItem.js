@@ -265,6 +265,7 @@ angular.module('smartShopper', ["chart.js"])
         $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
       } else {
+        $("#this-carousel-id").load("carousel.html");
         $.ajax({
             type: "GET",
             url: "https://grocery-server.herokuapp.com/getGrocery/",
@@ -283,7 +284,6 @@ angular.module('smartShopper', ["chart.js"])
           .fail (function (response,status){
              bootbox.alert("Server Down!");
           });
-          $("#this-carousel-id").load("carousel.html");
       }
       
     };
