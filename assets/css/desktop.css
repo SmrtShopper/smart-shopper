@@ -15,7 +15,7 @@ and (max-width: 1200px) {
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
-    }
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -24,10 +24,10 @@ and (max-width: 1200px) {
   }
 
   #chart-buttons .btn-default {
-    padding: 5px 10px;
+    padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
-    }
+  }
 }
 
 
