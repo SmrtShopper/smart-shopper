@@ -23,6 +23,10 @@ and (max-width: 1200px) {
     display: none;
   }
 
+  #send_to_phone {
+    display: none;
+  }
+
   #chart-buttons .btn-default {
     padding: 1px 5px;
     font-size: 12px;
