@@ -1,11 +1,3 @@
-
-$(document).ready(function(){
-  $('.carousel').carousel({
-    interval: false
-  });
-});
-
-
 angular.module('smartShopper', ["chart.js"])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
     // $scope.items = [
@@ -17,7 +9,7 @@ angular.module('smartShopper', ["chart.js"])
     //   {fields:{item_name: 'broccoli'}}
     // ];
 
-       $scope.setupID = function () {
+      $scope.setupID = function () {
       if ($scope.id) {
         //get all groceries
         $.ajax({
@@ -234,7 +226,6 @@ angular.module('smartShopper', ["chart.js"])
 
     $scope.initializeGraphs = function() {
       console.log("INITIALIZE GRAPHS");
-
 
       $scope.radarColors = [
         {
@@ -461,5 +452,32 @@ angular.module('smartShopper', ["chart.js"])
          bootbox.alert("clearlist Server Down!");
       });
     };
+
+    $scope.show1 = function() {
+      $("#radar1").show();
+      $("#radar2").hide();
+      $("#radar3").hide();
+      $("#doughnut").hide();
+    }
+
+    $scope.show2 = function() {
+      $("#radar1").hide();
+      $("#radar2").show();
+      $("#radar3").hide();
+      $("#doughnut").hide();
+    }
+
+    $scope.show3 = function() {
+      $("#radar1").hide();
+      $("#radar2").hide();
+      $("#radar3").show();
+      $("#doughnut").hide();
+    }
+    $scope.show4 = function() {
+      $("#radar1").hide();
+      $("#radar2").hide();
+      $("#radar3").hide();
+      $("#doughnut").show();
+    }
 
   }]);
