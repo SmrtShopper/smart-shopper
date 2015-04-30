@@ -25,6 +25,30 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
     };
 
     $scope.id = localStorage.getItem("id");
+    if (location.search.substring('?').split('=').length == 2 && location.search.substring('?').split('=')[0] == '?uid') {
+      $.ajax({
+            type: "GET",
+            url: "https://grocery-server.herokuapp.com/checkUID/",
+            data: {
+              "login" : location.search.substring('?').split('=')[1]
+            }
+          })
+          .done (function(data, status){
+              if (data == "1") {
+                //valid id
+                $scope.id = location.search.substring('?').split('=')[1];
+                localStorage.setItem("id", $scope.id);
+              } 
+              else {
+                bootbox.alert("Oops! That's not a valid link. Check the link and try again!");
+                $scope.id = localStorage.getItem("id");
+              }
+          })
+          .fail (function (response,status){
+             bootbox.alert("Server Down!");
+      });
+    }
+
     if ($scope.id) {
       //get all groceries
       $.ajax({
@@ -35,10 +59,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
             }
           })
           .done (function(data, status){
-              console.log ("I GOT GROCERY");
-              console.log(data);
               $scope.alldata = data;
-              console.log($scope.alldata);
               $scope.initializeGraphs();
               $scope.$digest();
           })
