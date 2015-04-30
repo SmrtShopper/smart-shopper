@@ -25,8 +25,8 @@
 <script type="text/javascript" src="assets/js/groceryItem.js"></script>
 
 
-<script type="text/javascript" src="assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
-<script src="bower_components\angular-modal-service\dst\angular-modal-service.min.js"></script>  
+<!-- <script type="text/javascript" src="assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script> -->
+<!-- <script src="bower_components\angular-modal-service\dst\angular-modal-service.min.js"></script>   -->
 <script src="node_modules/bootbox/bootbox.min.js"></script>  
 <!-- <script type="text/javascript" src="assets/js/fb.js"></script> -->
 
@@ -52,14 +52,15 @@
     <li class= "list-group-item active">
       <span class="list-group-item-heading">Grocery List</span>
       <span class="btn-group-xs">
-        <button id="send_to_phone" type="button" class="btn btn-default pull-right hover" type="submit" ng-click="sendtophone()">
-          <i class="glyphicon glyphicon-phone"></i>
-          <span>Send to phone</span>
-        </button>
         <button id="clear_list" type="button" class="btn btn-default pull-right hover" type="submit" ng-click="clearList()">
           <i class="glyphicon glyphicon-trash"></i>
           <span>Clear list</span>
         </button>
+        <button id="send_to_phone" type="button" class="btn btn-default pull-right hover" type="submit" ng-click="sendtophone()">
+          <i class="glyphicon glyphicon-phone"></i>
+          <span>Send to phone</span>
+        </button>
+
       </span>
     </li>
     <li class= "list-group-item"> <!-- Search bar -->
@@ -95,21 +96,56 @@
     </li>
   </ul>
 
+  <!--  Carousel - consult the Twitter Bootstrap docs at 
+      http://twitter.github.com/bootstrap/javascript.html#carousel -->
+  <div id="carousel-container">
+    <div id="this-carousel-id" class="col-xs-12 col-md-6 carousel slide" data-ride="carousel"><!-- class of slide for animation -->
+      <div class="carousel-inner">
+        <div class="item active"><!-- class of active since it's the first item -->
+          <canvas id="radar" class="chart chart-radar" data="data1" labels="labels1" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
+          </canvas>
+          <div class="carousel-caption">
+            <p>Macronutrients</p>
+          </div>
+        </div>
+        <div class="item">
+          <canvas id="radar" class="chart chart-radar" data="data2" labels="labels2" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
+          </canvas>
+          <div class="carousel-caption">
+            <p>Vitamins</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/1200x480" alt="" />
+          <div class="carousel-caption">
+            <p>Caption text here</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/1200x480" alt="" />
+          <div class="carousel-caption">
+            <p>Caption text here</p>
+          </div>
+        </div>
+      </div><!-- /.carousel-inner -->
+      <!--  Next and Previous controls below
+            href values must reference the id for this carousel -->
+      <a class="carousel-control left" href="#this-carousel-id" data-slide="prev"><span class="glyphicon glyphicon-menu-left"></span></a>
+      <a class="carousel-control right" href="#this-carousel-id" data-slide="next"><span class="glyphicon glyphicon-menu-right"></span></a>
+    </div><!-- /.carousel -->
+  </div>
 
   <div id="charts" class="col-xs-12 col-md-6 col-offset-3">
     <div class="panel panel-default">
       <div class="panel-heading">Macronutrients</div>
       <div class="panel-body">
-        <canvas id="radar" class="chart chart-radar" data="data1" labels="labels1" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
-        </canvas>
+
       </div>
     </div>  
     
     <div class="panel panel-default">
       <div class="panel-heading">Vitamins</div>
       <div class="panel-body">
-        <canvas id="radar" class="chart chart-radar" data="data2" labels="labels2" options="radarOptions" series="radarSeries" colours="radarColors" legend="true">
-        </canvas>
       </div>
     </div>
 

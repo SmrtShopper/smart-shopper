@@ -1,4 +1,12 @@
-angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService'])
+
+$(document).ready(function(){
+  $('.carousel').carousel({
+    interval: false
+  });
+});
+
+
+angular.module('smartShopper', ["chart.js"])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
     // $scope.items = [
     //   {fields:{item_name:'ice cream', bought: true, quantity: 3}},
@@ -268,6 +276,7 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
       };
       if ($scope.alldata != null && $scope.alldata.total != null){
         $scope.updateGraphs();
+        console.log('ah');
       }
       $scope.$apply;
     };
@@ -277,6 +286,65 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
         $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1);
         $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
+      } else {
+        console.log("before: " + $scope.data1)
+        $("#this-carousel-id").remove();
+
+        $.get('carousel.html', function(data) {
+          var fileContents = data;
+          $("#carousel-container").prepend(fileContents);
+        })
+        $(document).ready(function() {
+          $('.carousel').carousel({
+            interval: false
+          });
+
+          $scope.radarColors = [
+            {
+              fillColor: 'rgba(220,220,220,.2)',
+              strokeColor: 'rgba(220,220,220,1)',
+              pointColor: 'rgba(220,220,220,1)',
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(220,220,220,1)",
+            }, 
+            {
+              fillColor: 'rgba(151,187,205,.2)',
+              strokeColor: 'rgba(151,187,205,1)',
+              pointColor: 'rgba(151,187,205,1)',
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+            }
+          ];
+
+          $scope.radarOptions = {
+            scaleShowLabels : false,
+            // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+          }
+
+          $scope.radarSeries = ["Balanced Diet", "Your Diet"];
+
+          $.ajax({
+              type: "GET",
+              url: "https://grocery-server.herokuapp.com/getGrocery/",
+              data: {
+                "login" : $scope.id
+              }
+            })
+            .done (function(data, status){
+                console.log ("I GOT GROCERY");
+                console.log(data);
+                $scope.alldata = data;
+                console.log($scope.alldata);
+                $scope.initializeGraphs();
+                $scope.$digest();
+            })
+            .fail (function (response,status){
+               bootbox.alert("Server Down!");
+            });
+        });
+        
       }
       
     };
@@ -411,4 +479,5 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
          bootbox.alert("Server Down!");
       });
     };
+
   }]);
