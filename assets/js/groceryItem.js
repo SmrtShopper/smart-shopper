@@ -87,7 +87,8 @@ angular.module('smartShopper', ["chart.js"])
 
       $scope.options = {
         onAnimationComplete: function(){},
-        animationEasing: "none",
+        animateRotate : false,
+        animationEasing : "easeOutQuart",
         segmentShowStroke: false,
         responsive: true,
       };
