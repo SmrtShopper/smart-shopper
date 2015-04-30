@@ -1,4 +1,12 @@
-angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService'])
+
+$(document).ready(function(){
+  $('.carousel').carousel({
+    interval: false
+  });
+});
+
+
+angular.module('smartShopper', ["chart.js"])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
     // $scope.items = [
     //   {fields:{item_name:'ice cream', bought: true, quantity: 3}},
@@ -390,4 +398,5 @@ angular.module('smartShopper', ["chart.js", "ui.bootstrap", 'angularModalService
          bootbox.alert("Server Down!");
       });
     };
+
   }]);
