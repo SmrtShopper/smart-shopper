@@ -17,7 +17,91 @@ angular.module('smartShopper', ["chart.js"])
     //   {fields:{item_name: 'broccoli'}}
     // ];
 
-    $scope.id = localStorage.getItem("id");
+       $scope.setupID = function () {
+      if ($scope.id) {
+        //get all groceries
+        $.ajax({
+              type: "GET",
+              url: "https://grocery-server.herokuapp.com/getGrocery/",
+              data: {
+                "login" : $scope.id
+              }
+            })
+            .done (function(data, status){
+                $scope.alldata = data;
+                $scope.initializeGraphs();
+                $scope.$digest();
+            })
+            .fail (function (response,status){
+               bootbox.alert("Server Down!");
+            });
+
+      } else {
+          console.log("No localstorage ID");
+          $scope.getUID(); 
+      }
+      
+      console.log($scope.id);
+      console.log(radar_labels);
+
+      // $scope.data1 = [
+      //   [1, 2, 5, 2, 7],
+      //   [5, 3, 4, 2, 8]
+      // ];
+
+      // $scope.labels1 = ["a", "b", "c", "d", "e"];
+
+      $scope.radarColors = [
+        {
+          fillColor: 'rgba(220,220,220,.2)',
+          strokeColor: 'rgba(220,220,220,1)',
+          pointColor: 'rgba(220,220,220,1)',
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+        }, 
+        {
+          fillColor: 'rgba(151,187,205,.2)',
+          strokeColor: 'rgba(151,187,205,1)',
+          pointColor: 'rgba(151,187,205,1)',
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+        }
+      ];
+
+      $scope.radarOptions = {
+        scaleShowLabels : false,
+        // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+      }
+
+      $scope.radarSeries = ["Balanced Diet", "Your Diet"];
+
+    }
+   
+
+    $scope.getUID = function() {
+      $.ajax({
+            type: "GET",
+            timeout: 10000, 
+            url: "http://grocery-server.herokuapp.com/getUID/",
+          })
+      .done (function(uid, status){
+          localStorage.setItem("id", uid);
+          $scope.id = uid;
+          $scope.$digest;
+          console.log("GOT NEW ID");
+          console.log($scope.id);
+          $scope.initializeGraphs();
+      })
+      .fail (function (response,status){
+         bootbox.alert("Server Down!");
+      });
+
+    };
+
+    //Initialization
+
     if (location.search.substring('?').split('=').length == 2 && location.search.substring('?').split('=')[0] == '?uid') {
       $.ajax({
             type: "GET",
@@ -36,85 +120,16 @@ angular.module('smartShopper', ["chart.js"])
                 bootbox.alert("Oops! That's not a valid link. Check the link and try again!");
                 $scope.id = localStorage.getItem("id");
               }
+              $scope.setupID();
           })
           .fail (function (response,status){
              bootbox.alert("Server Down!");
       });
-    }
-
-    if ($scope.id) {
-      //get all groceries
-      $.ajax({
-            type: "GET",
-            url: "https://grocery-server.herokuapp.com/getGrocery/",
-            data: {
-              "login" : $scope.id
-            }
-          })
-          .done (function(data, status){
-              $scope.alldata = data;
-              $scope.initializeGraphs();
-              $scope.$digest();
-          })
-          .fail (function (response,status){
-             bootbox.alert("Server Down!");
-          });
-
     } else {
-        $scope.id = $scope.getUID(); 
+      console.log("No ID in URL");
+      $scope.id = localStorage.getItem("id");
+      $scope.setupID();
     }
-    
-    console.log($scope.id);
-    console.log(radar_labels);
-
-    // $scope.data1 = [
-    //   [1, 2, 5, 2, 7],
-    //   [5, 3, 4, 2, 8]
-    // ];
-
-    // $scope.labels1 = ["a", "b", "c", "d", "e"];
-
-    $scope.radarColors = [
-      {
-        fillColor: 'rgba(220,220,220,.2)',
-        strokeColor: 'rgba(220,220,220,1)',
-        pointColor: 'rgba(220,220,220,1)',
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-      }, 
-      {
-        fillColor: 'rgba(151,187,205,.2)',
-        strokeColor: 'rgba(151,187,205,1)',
-        pointColor: 'rgba(151,187,205,1)',
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
-      }
-    ];
-
-    $scope.radarOptions = {
-      scaleShowLabels : false,
-      // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-    }
-
-    $scope.radarSeries = ["Balanced Diet", "Your Diet"];
-
-    $scope.getUID = function() {
-      $.ajax({
-            type: "GET",
-            timeout: 10000, 
-            url: "http://grocery-server.herokuapp.com/getUID/",
-          })
-      .done (function(uid, status){
-          localStorage.setItem("id", uid);
-          return uid;
-      })
-      .fail (function (response,status){
-         bootbox.alert("Server Down!");
-      });
-
-    };
     
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
