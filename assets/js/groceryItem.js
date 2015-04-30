@@ -321,7 +321,7 @@ angular.module('smartShopper', ["chart.js"])
                bootbox.alert("Server Down!");
             });
         });
-        console.log($scope.radarSeries);
+        console.log("done");
         
       }
       
