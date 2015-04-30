@@ -8,6 +8,30 @@ html {
   display: none; 
 }
 
+@media only screen and (min-device-width: 600px)
+and (max-width: 1200px) {
+
+  #chart-buttons .btn-default {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    }
+}
+
+@media screen and (max-width: 600px) {
+  #clear_list span {
+    display: none;
+  }
+
+  #chart-buttons .btn-default {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    }
+}
+
+
+
 .header {
   display: -webkit-flex;
 }
@@ -20,7 +44,16 @@ html {
   color: #7E7E7E;
 }
 
+.list-group {
+  padding-left: 15px;
+}
+
+#chart-wrapper {
+  text-align: center;
+}
+
 #chart-buttons {
+  display: inline-block;
   margin-bottom: 15px;
 }
 
