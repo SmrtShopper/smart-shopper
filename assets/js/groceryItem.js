@@ -209,6 +209,10 @@ angular.module('smartShopper', ["chart.js"])
 
 
     };
+
+    $scope.welcome = function() {
+         introJs().start();
+    };
    
 
     $scope.getUID = function() {
@@ -227,6 +231,7 @@ angular.module('smartShopper', ["chart.js"])
           // $scope.updateGraphs();
           // $scope.$digest;
           $scope.$digest;
+          $scope.welcome();
           console.log("done getuid");
       })
       .fail (function (response,status){
@@ -265,6 +270,7 @@ angular.module('smartShopper', ["chart.js"])
       $scope.id = localStorage.getItem("id");
       $scope.setupID();
     }
+
     
     $scope.search = function() {
       console.log("SEARCH");
