@@ -93,6 +93,7 @@ angular.module('smartShopper', ["chart.js"])
 
 
 
+
     $scope.show1 = function() {
       $("#radar1").show();
       $("#radar2").hide();
@@ -142,7 +143,12 @@ angular.module('smartShopper', ["chart.js"])
       $("#radar3").css('visibility', 'hidden')
       $("#doughnut").css('visibility', 'hidden');
     }
-
+    $scope.hideall = function(){
+      $("#charts").css('visibility', 'hidden');
+    }
+    $scope.visibleall = function(){
+      $("#charts").css('visibility', 'visible');
+    }
     $scope.hide();
     // $scope.initializeGraphs();
     
@@ -263,6 +269,8 @@ angular.module('smartShopper', ["chart.js"])
             $scope.alldata = alldata;
             $scope.updateGraphs();
             $scope.$digest();
+            $scope.visibleall();
+
           }
           document.getElementById("grocItem").value = '';
         }
@@ -412,15 +420,14 @@ angular.module('smartShopper', ["chart.js"])
           })
       .done (function(response, status){
         alldata = JSON.parse(response);
-        if (alldata.errors == null){
-          $scope.alldata = alldata;
-          $scope.updateGraphs();
-          $scope.$digest();
-          document.getElementById("grocItem").value = '';
+        if (response =="{}") {
+          //no items left
+          $scope.hideall();
         }
-        else {
-          bootbox.alert("No results found!");
-        }
+        $scope.alldata = alldata;
+        $scope.updateGraphs();
+        $scope.$digest();
+        document.getElementById("grocItem").value = '';
         
       })
       .fail (function (response,status){
@@ -452,16 +459,11 @@ angular.module('smartShopper', ["chart.js"])
           })
       .done (function(response, status){
         alldata = JSON.parse(response);
-        if (alldata.error == null){
-          $scope.alldata = alldata;
-          $scope.updateGraphs();
-          $scope.$digest();
-          document.getElementById("grocItem").value = '';
-        }
-        else {
-          bootbox.alert("No results found!");
-        }
-        
+        $scope.alldata = alldata;
+        $scope.updateGraphs();
+        $scope.$digest();
+        $scope.hideall();
+        document.getElementById("grocItem").value = '';        
       })
       .fail (function (response,status){
          bootbox.alert("Server Down!");
