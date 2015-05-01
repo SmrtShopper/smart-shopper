@@ -404,9 +404,13 @@ angular.module('smartShopper', ["chart.js"])
     $scope.updateGraphs = function(){
       console.log("UPDATE GRAPHS");
       if ($scope.alldata && $scope.alldata.total) {
-        $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1);
-        $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2);
-        $scope.data3 = updateRadar($scope.alldata.total.nutrients, $scope.data3, $scope.nutrients3);
+        console.log($("#radar1 .panel-body p"));
+        $("#radar1 .panel-body p").remove();
+        $("#radar2 .panel-body p").remove();
+        $("#radar3 .panel-body p").remove();
+        $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1, $scope.labels1, "1");
+        $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2, $scope.labels2, "2");
+        $scope.data3 = updateRadar($scope.alldata.total.nutrients, $scope.data3, $scope.nutrients3, $scope.labels3, "3");
         updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
       } 
     };
@@ -415,7 +419,7 @@ angular.module('smartShopper', ["chart.js"])
       $scope.updateGraphs();
     });
 
-    function updateRadar(nutrientsData, data, nutrients_to_use) {
+    function updateRadar(nutrientsData, data, nutrients_to_use, label, id) {
       console.log("UPDATE RADAR");
       if (!nutrientsData) {
         //do something here to indicate no data and prompt to add data
@@ -443,6 +447,8 @@ angular.module('smartShopper', ["chart.js"])
               userData = parseFloat((100*userData).toFixed(2));
               data[0].push(100);
               data[1].push(userData);
+              console.log(calculateColor(userData));
+              $("#radar"+id+" .panel-body").append("<p>"+label[i].substring(2)+": <span style='color:"+calculateColor(userData)+"'>"+userData+"</span>"+"%</p>");
             }
           }
         }
@@ -450,6 +456,17 @@ angular.module('smartShopper', ["chart.js"])
         return data;
 
       }
+    }
+
+    function calculateColor(data) {
+      var red = Math.abs(data*5.1-510);
+      if (red > 255) {
+        red = 255;
+      }
+      else if (red < 0) {
+        red = 0;
+      }
+      return ("rgb("+red+",0,0)");
     }
 
     function updateDoughnut(nutrientsData, unit, minValue) {
