@@ -217,7 +217,7 @@ angular.module('smartShopper', ["chart.js"])
           $scope.id = uid;
           $scope.alldata = "{}";
           $scope.initializeGraphs();
-          $scope.show1();
+          $scope.hideall();
           $scope.$digest;
           $scope.welcome();
       })
