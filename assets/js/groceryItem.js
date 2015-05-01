@@ -1,7 +1,7 @@
+var graph = 1;
+
 angular.module('smartShopper', ["chart.js"])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
-
-
     $scope.initializeGraphs = function() {
       // $scope.show1();
 
@@ -23,11 +23,6 @@ angular.module('smartShopper', ["chart.js"])
           pointHighlightStroke: "rgba(151,187,205,1)",
         }
       ];
-
-      // $scope.radarOptions = {
-      //   scaleShowLabels : false,
-      //   // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-      // }
 
       $scope.radarSeries = ["Balanced Diet", "Your Diet"];
 
@@ -95,6 +90,7 @@ angular.module('smartShopper', ["chart.js"])
 
 
     $scope.show1 = function() {
+      graph = 1;
       $("#radar1").show();
       $("#radar2").hide();
       $("#radar3").hide();
@@ -106,6 +102,7 @@ angular.module('smartShopper', ["chart.js"])
     };
 
     $scope.show2 = function() {
+      graph = 2;
       $("#radar1").hide();
       $("#radar2").show();
       $("#radar3").hide();
@@ -117,6 +114,7 @@ angular.module('smartShopper', ["chart.js"])
     };
 
     $scope.show3 = function() {
+      graph = 3;
       $("#radar1").hide();
       $("#radar2").hide();
       $("#radar3").show();
@@ -127,6 +125,7 @@ angular.module('smartShopper', ["chart.js"])
       $("#doughnut").css('visibility', 'hidden');
     };
     $scope.show4 = function() {
+      graph = 4;
       $("#radar1").hide();
       $("#radar2").hide();
       $("#radar3").hide();
@@ -279,8 +278,14 @@ angular.module('smartShopper', ["chart.js"])
               $scope.updateGraphs();
               $scope.$digest();
               $scope.visibleall();
-              $scope.show1();
-
+              if (graph == 1)
+                $scope.show1();
+              else if (graph == 2)
+                $scope.show2();
+              else if (graph == 3)
+                $scope.show3();
+              else
+                $scope.show4();
             }
             document.getElementById("grocItem").value = '';
           }
