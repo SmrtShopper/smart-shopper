@@ -341,7 +341,7 @@ angular.module('smartShopper', ["chart.js"])
         $scope.data1 = updateRadar($scope.alldata.total.nutrients, $scope.data1, $scope.nutrients1, $scope.labels1, "1");
         $scope.data2 = updateRadar($scope.alldata.total.nutrients, $scope.data2, $scope.nutrients2, $scope.labels2, "2");
         $scope.data3 = updateRadar($scope.alldata.total.nutrients, $scope.data3, $scope.nutrients3, $scope.labels3, "3");
-        updateDoughnut($scope.alldata.total.nutrients, "g", 0.3);
+        updateDoughnut($scope.alldata.total.nutrients, "g", 1);
       } 
     };
 
