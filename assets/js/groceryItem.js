@@ -145,9 +145,17 @@ angular.module('smartShopper', ["chart.js"])
     }
     $scope.hideall = function(){
       $("#charts").css('visibility', 'hidden');
+      $("#radar1").css('visibility', 'hidden');
+      $("#radar2").css('visibility', 'hidden');
+      $("#radar3").css('visibility', 'hidden')
+      $("#doughnut").css('visibility', 'hidden');
     }
     $scope.visibleall = function(){
       $("#charts").css('visibility', 'visible');
+      $("#radar1").css('visibility', 'visible');
+      $("#radar2").css('visibility', 'visible');
+      $("#radar3").css('visibility', 'visible')
+      $("#doughnut").css('visibility', 'visible');
     }
     $scope.hide();
     // $scope.initializeGraphs();
