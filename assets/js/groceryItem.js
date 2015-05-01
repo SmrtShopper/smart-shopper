@@ -184,6 +184,10 @@ angular.module('smartShopper', ["chart.js"])
             })
             .done (function(data, status){
                 $scope.alldata = data;
+                //check if data empty
+                if (jQuery.isEmptyObject($scope.alldata)) {
+                  $scope.hideall();
+                }
                 $scope.initializeGraphs();
                 $scope.$digest();
             })
@@ -199,10 +203,8 @@ angular.module('smartShopper', ["chart.js"])
     };
 
     $scope.welcome = function() {
-      //check for mobile web browser (see http://stackoverflow.com/questions/11381673/detecting-a-mobile-browser)
-      if(typeof window.orientation == 'undefined'){
-         introJs().start();
-      }
+      introJs().start();
+      $scope.hideall();
     };
    
 
@@ -428,11 +430,11 @@ angular.module('smartShopper', ["chart.js"])
           })
       .done (function(response, status){
         alldata = JSON.parse(response);
-        if (response =="{}") {
+        $scope.alldata = alldata;
+        if (jQuery.isEmptyObject($scope.alldata)) {
           //no items left
           $scope.hideall();
         }
-        $scope.alldata = alldata;
         $scope.updateGraphs();
         $scope.$digest();
         document.getElementById("grocItem").value = '';
@@ -469,8 +471,8 @@ angular.module('smartShopper', ["chart.js"])
         alldata = JSON.parse(response);
         $scope.alldata = alldata;
         $scope.updateGraphs();
-        $scope.$digest();
         $scope.hideall();
+        $scope.$digest();
         document.getElementById("grocItem").value = '';        
       })
       .fail (function (response,status){
