@@ -9,6 +9,168 @@ angular.module('smartShopper', ["chart.js"])
     //   {fields:{item_name: 'broccoli'}}
     // ];
 
+
+    $scope.initializeGraphs = function() {
+      console.log("INITIALIZE GRAPHS");
+      // $scope.show1();
+
+      $scope.radarColors = [
+        {
+          fillColor: 'rgba(220,220,220,.2)',
+          strokeColor: 'rgba(220,220,220,1)',
+          pointColor: 'rgba(220,220,220,1)',
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+        }, 
+        {
+          fillColor: 'rgba(151,187,205,.2)',
+          strokeColor: 'rgba(151,187,205,1)',
+          pointColor: 'rgba(151,187,205,1)',
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+        }
+      ];
+
+      // $scope.radarOptions = {
+      //   scaleShowLabels : false,
+      //   // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+      // }
+
+      $scope.radarSeries = ["Balanced Diet", "Your Diet"];
+
+
+      $scope.data1 = [[],[]];
+      $scope.labels1 = [];
+      $scope.nutrients1 = [];
+      var radar1size = 5;
+
+      $scope.data2 = [[],[]];
+      $scope.labels2 = [];
+      $scope.nutrients2 = [];
+      var radar2size = 5;
+
+      $scope.data3 = [[],[]];
+      $scope.labels3 = [];
+      $scope.nutrients3 = [];
+      var radar3size = 6;
+      
+      for (var i = 0; i < radar_labels.length; i++) {
+        if (i < radar1size) {
+          $scope.nutrients1[i] = radar_labels[i];
+          $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
+        }
+        else if (i < radar1size + radar2size) {
+          $scope.nutrients2[i - radar1size] = radar_labels[i];
+          $scope.labels2[i - radar1size] = radar_labels[i].name + ", " + radar_labels[i].unit;
+        }
+        else if (i < radar1size + radar2size + radar3size) {
+          var offset = radar2size + radar3size;
+          $scope.nutrients3[i - offset] = radar_labels[i];
+          $scope.labels3[i - offset] = radar_labels[i].name + ", " + radar_labels[i].unit;
+        }
+
+      }
+
+      $scope.data = [];
+      $scope.labels = [];
+      for (var i = 0; i < 860; i++) {
+        $scope.data[i] = 0;
+        $scope.labels[i] = "";
+      }
+
+      for (var i = 0; i < nutrient_labels.length; i++) {
+        current = nutrient_labels[i];
+        $scope.labels[current.id] = current.name;
+      }
+
+      $scope.options = {
+        onAnimationComplete: function(){},
+        animateRotate : false,
+        animationEasing : "easeOutQuart",
+        segmentShowStroke: false,
+        responsive: true,
+      };
+      if ($scope.alldata != null && $scope.alldata.total != null){
+        $scope.updateGraphs();
+        console.log('ah');
+      }
+      
+      // $scope.$apply;
+      $scope.$digest;
+    };
+
+
+
+    $scope.show1 = function() {
+      $("#radar1").show();
+      $("#radar2").hide();
+      $("#radar3").hide();
+      $("#doughnut").hide();
+      $("#radar1").css('visibility', 'visible');
+      $("#radar2").css('visibility', 'visible');
+      $("#radar3").css('visibility', 'visible')
+      $("#doughnut").css('visibility', 'visible');
+    };
+
+    $scope.show2 = function() {
+      $("#radar1").hide();
+      $("#radar2").show();
+      $("#radar3").hide();
+      $("#doughnut").hide();
+      $("#radar1").css('visibility', 'hidden');
+      $("#radar2").css('visibility', 'visible');
+      $("#radar3").css('visibility', 'hidden')
+      $("#doughnut").css('visibility', 'hidden');
+    };
+
+    $scope.show3 = function() {
+      $("#radar1").hide();
+      $("#radar2").hide();
+      $("#radar3").show();
+      $("#doughnut").hide();
+      $("#radar1").css('visibility', 'hidden');
+      $("#radar2").css('visibility', 'hidden');
+      $("#radar3").css('visibility', 'visible')
+      $("#doughnut").css('visibility', 'hidden');
+    };
+    $scope.show4 = function() {
+      $("#radar1").hide();
+      $("#radar2").hide();
+      $("#radar3").hide();
+      $("#doughnut").show();
+      $("#radar1").css('visibility', 'hidden');
+      $("#radar2").css('visibility', 'hidden');
+      $("#radar3").css('visibility', 'hidden')
+      $("#doughnut").css('visibility', 'visible');
+    };
+
+    $scope.hide = function() {
+      console.log("hide");
+      $("#radar1").show();
+      $("#radar2").css('visibility', 'hidden');
+      $("#radar3").css('visibility', 'hidden')
+      $("#doughnut").css('visibility', 'hidden');
+    }
+
+    $scope.hide();
+    // $scope.initializeGraphs();
+    
+    $scope.$on('create', function (event, chart) {
+      // console.log(chart);
+
+      if (chart.id == 'chart-15') {
+        console.log('here');
+        $scope.options.onAnimationComplete = function(){
+          $scope.show1();
+        }
+
+
+      }
+    });
+
+
     $scope.setupID = function () {
       if ($scope.id) {
         //get all groceries
@@ -238,93 +400,6 @@ angular.module('smartShopper', ["chart.js"])
       
     };
 
-    $scope.initializeGraphs = function() {
-      console.log("INITIALIZE GRAPHS");
-
-      $scope.radarColors = [
-        {
-          fillColor: 'rgba(220,220,220,.2)',
-          strokeColor: 'rgba(220,220,220,1)',
-          pointColor: 'rgba(220,220,220,1)',
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-        }, 
-        {
-          fillColor: 'rgba(151,187,205,.2)',
-          strokeColor: 'rgba(151,187,205,1)',
-          pointColor: 'rgba(151,187,205,1)',
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-        }
-      ];
-
-      $scope.radarOptions = {
-        scaleShowLabels : false,
-        // legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-      }
-
-      $scope.radarSeries = ["Balanced Diet", "Your Diet"];
-
-
-      $scope.data1 = [[],[]];
-      $scope.labels1 = [];
-      $scope.nutrients1 = [];
-      var radar1size = 5;
-
-      $scope.data2 = [[],[]];
-      $scope.labels2 = [];
-      $scope.nutrients2 = [];
-      var radar2size = 5;
-
-      $scope.data3 = [[],[]];
-      $scope.labels3 = [];
-      $scope.nutrients3 = [];
-      var radar3size = 6;
-      
-      for (var i = 0; i < radar_labels.length; i++) {
-        if (i < radar1size) {
-          $scope.nutrients1[i] = radar_labels[i];
-          $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
-        }
-        else if (i < radar1size + radar2size) {
-          $scope.nutrients2[i - radar1size] = radar_labels[i];
-          $scope.labels2[i - radar1size] = radar_labels[i].name + ", " + radar_labels[i].unit;
-        }
-        else if (i < radar1size + radar2size + radar3size) {
-          var offset = radar2size + radar3size;
-          $scope.nutrients3[i - offset] = radar_labels[i];
-          $scope.labels3[i - offset] = radar_labels[i].name + ", " + radar_labels[i].unit;
-        }
-
-      }
-
-      $scope.data = [];
-      $scope.labels = [];
-      for (var i = 0; i < 860; i++) {
-        $scope.data[i] = 0;
-        $scope.labels[i] = "";
-      }
-
-      for (var i = 0; i < nutrient_labels.length; i++) {
-        current = nutrient_labels[i];
-        $scope.labels[current.id] = current.name;
-      }
-
-      $scope.options = {
-        animationEasing: "easeOutQuart",
-        segmentShowStroke: false,
-        responsive: true,
-      };
-      if ($scope.alldata != null && $scope.alldata.total != null){
-        $scope.updateGraphs();
-        console.log('ah');
-      }
-      // $scope.$apply;
-      $scope.$digest;
-      console.log ("done init graphs");
-    };
 
     $scope.updateGraphs = function(){
       console.log("UPDATE GRAPHS");
@@ -468,31 +543,6 @@ angular.module('smartShopper', ["chart.js"])
       });
     };
 
-    $scope.show1 = function() {
-      $("#radar1").show();
-      $("#radar2").hide();
-      $("#radar3").hide();
-      $("#doughnut").hide();
-    }
 
-    $scope.show2 = function() {
-      $("#radar1").hide();
-      $("#radar2").show();
-      $("#radar3").hide();
-      $("#doughnut").hide();
-    }
-
-    $scope.show3 = function() {
-      $("#radar1").hide();
-      $("#radar2").hide();
-      $("#radar3").show();
-      $("#doughnut").hide();
-    }
-    $scope.show4 = function() {
-      $("#radar1").hide();
-      $("#radar2").hide();
-      $("#radar3").hide();
-      $("#doughnut").show();
-    }
 
   }]);
