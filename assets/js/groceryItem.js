@@ -218,12 +218,9 @@ angular.module('smartShopper', ["chart.js"])
           $scope.id = uid;
           $scope.alldata = "{}";
           $scope.initializeGraphs();
-          // $scope.updateGraphs();
-          // $scope.$digest;
+          $scope.show1();
           $scope.$digest;
-          $scope.visibleall();
           $scope.welcome();
-          $scope.hideall();
       })
       .fail (function (response,status){
          bootbox.alert("Server Down!");
@@ -265,34 +262,38 @@ angular.module('smartShopper', ["chart.js"])
     $scope.search = function() {
       var query = document.getElementById("grocItem").value;
       //$scope.getTotals(query);
-      $.ajax({
-            type: "POST",
-            url: "http://grocery-server.herokuapp.com/addGrocery/",
-            data: {login: $scope.id, grocery: query},
-            dataType: "text"
-          })
-      .done (function(response, status){
-        alldata = JSON.parse(response);
-        if (alldata.error == null){
-          if (alldata == "{}") {
-            bootbox.alert("Please enter an item!");
-          } else {
-            $scope.alldata = alldata;
-            $scope.updateGraphs();
-            $scope.$digest();
-            $scope.visibleall();
+      if (query != ""){
+        $.ajax({
+              type: "POST",
+              url: "http://grocery-server.herokuapp.com/addGrocery/",
+              data: {login: $scope.id, grocery: query},
+              dataType: "text"
+            })
+        .done (function(response, status){
+          alldata = JSON.parse(response);
+          if (alldata.error == null){
+            if (alldata == "{}") {
+              bootbox.alert("Please enter an item!");
+            } else {
+              $scope.alldata = alldata;
+              $scope.updateGraphs();
+              $scope.$digest();
+              $scope.visibleall();
 
+            }
+            document.getElementById("grocItem").value = '';
           }
-          document.getElementById("grocItem").value = '';
-        }
-        else {
-          bootbox.alert("No results found!");
-        }
-        
-      })
-      .fail (function (response,status){
-         bootbox.alert("Server Down!");
-      });
+          else {
+            bootbox.alert("No results found!");
+          }
+          
+        })
+        .fail (function (response,status){
+           bootbox.alert("Server Down!");
+        });
+      }else {
+        bootbox.alert("Please enter an item!");
+      }
       document.getElementById("grocItem").value = '';
 
     };
