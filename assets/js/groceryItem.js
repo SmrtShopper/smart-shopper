@@ -204,7 +204,6 @@ angular.module('smartShopper', ["chart.js"])
 
     $scope.welcome = function() {
       introJs().start();
-      $scope.hideall();
     };
    
 
@@ -222,7 +221,9 @@ angular.module('smartShopper', ["chart.js"])
           // $scope.updateGraphs();
           // $scope.$digest;
           $scope.$digest;
+          $scope.visibleall();
           $scope.welcome();
+          $scope.hideall();
       })
       .fail (function (response,status){
          bootbox.alert("Server Down!");
