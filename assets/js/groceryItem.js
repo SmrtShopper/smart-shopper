@@ -374,23 +374,23 @@ angular.module('smartShopper', ["chart.js"])
           }
           else {
             num = result;
-            num = localStorage.setItem("phone", num); 
-
-            var allitemstr = '';
-            if ($scope.alldata.results) {
-             for (var i = 0; i < $scope.alldata.results.length; i++) {
-                allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
-              }
-            }
+            localStorage.setItem("phone", num); 
 
             address = location.origin + location.pathname + "?uid=" + $scope.id;
-            allitemstr = allitemstr + '\n' + address;
-
             $.ajax({
-                  type: "POST",
-                  url: "http://textbelt.com/text",
-                  data: {number:num, message:allitemstr},
-                  success: bootbox.alert("Message Sent!"),
+                  type: "GET",
+                  url: "https://grocery-server.herokuapp.com/sendSMS/",
+                  data: {phone:num, login:$scope.id, url: address},
+                  success: function(res) {
+                    console.log(res);
+                    if (res == "success"){
+                      bootbox.alert("Message Sent!");
+                    }
+                    else {
+                      bootbox.alert("Message not sent! Please check phone number and try again.");
+                    }
+                    
+                  },
                   dataType: "text"
            }); 
           }
