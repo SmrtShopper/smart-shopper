@@ -3,7 +3,6 @@ angular.module('smartShopper', ["chart.js"])
 
 
     $scope.initializeGraphs = function() {
-      console.log("INITIALIZE GRAPHS");
       // $scope.show1();
 
       $scope.radarColors = [
@@ -86,7 +85,6 @@ angular.module('smartShopper', ["chart.js"])
       };
       if ($scope.alldata != null && $scope.alldata.total != null){
         $scope.updateGraphs();
-        console.log('ah');
       }
       
       // $scope.$apply;
@@ -139,7 +137,6 @@ angular.module('smartShopper', ["chart.js"])
     };
 
     $scope.hide = function() {
-      console.log("hide");
       $("#radar1").show();
       $("#radar2").css('visibility', 'hidden');
       $("#radar3").css('visibility', 'hidden')
@@ -150,10 +147,8 @@ angular.module('smartShopper', ["chart.js"])
     // $scope.initializeGraphs();
     
     $scope.$on('create', function (event, chart) {
-      // console.log(chart);
 
       if (chart.id == 'chart-15') {
-        console.log('here');
         $scope.options.onAnimationComplete = function(){
           $scope.show1();
         }
@@ -179,17 +174,13 @@ angular.module('smartShopper', ["chart.js"])
                 $scope.$digest();
             })
             .fail (function (response,status){
-               console.log(status)
                bootbox.alert("Server Down!");
             });
 
       } else {
-          console.log("No localstorage ID");
           $scope.getUID(); 
       }
       
-      console.log($scope.id);
-      console.log(radar_labels);
 
     };
 
@@ -207,15 +198,12 @@ angular.module('smartShopper', ["chart.js"])
       .done (function(uid, status){
           localStorage.setItem("id", uid);
           $scope.id = uid;
-          console.log("GOT NEW ID");
-          console.log($scope.id);
           $scope.alldata = "{}";
           $scope.initializeGraphs();
           // $scope.updateGraphs();
           // $scope.$digest;
           $scope.$digest;
           $scope.welcome();
-          console.log("done getuid");
       })
       .fail (function (response,status){
          bootbox.alert("Server Down!");
@@ -249,14 +237,12 @@ angular.module('smartShopper', ["chart.js"])
              bootbox.alert("Server Down!");
       });
     } else {
-      console.log("No ID in URL");
       $scope.id = localStorage.getItem("id");
       $scope.setupID();
     }
 
     
     $scope.search = function() {
-      console.log("SEARCH");
       var query = document.getElementById("grocItem").value;
       //$scope.getTotals(query);
       $.ajax({
@@ -272,8 +258,6 @@ angular.module('smartShopper', ["chart.js"])
             bootbox.alert("Please enter an item!");
           } else {
             $scope.alldata = alldata;
-            console.log('all data');
-            console.log(alldata);
             $scope.updateGraphs();
             $scope.$digest();
           }
@@ -310,7 +294,6 @@ angular.module('smartShopper', ["chart.js"])
                   url: "https://grocery-server.herokuapp.com/sendSMS/",
                   data: {phone:num, login:$scope.id, url: address},
                   success: function(res) {
-                    console.log(res);
                     if (res == "success"){
                       bootbox.alert("Message Sent!");
                     }
@@ -329,7 +312,6 @@ angular.module('smartShopper', ["chart.js"])
 
     $scope.updateGraphs = function(){
       if ($scope.alldata && $scope.alldata.total) {
-        console.log($("#radar1 .panel-body p"));
         $("#radar1 .panel-body p").remove();
         $("#radar2 .panel-body p").remove();
         $("#radar3 .panel-body p").remove();
