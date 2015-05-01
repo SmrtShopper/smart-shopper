@@ -279,6 +279,7 @@ angular.module('smartShopper', ["chart.js"])
               $scope.updateGraphs();
               $scope.$digest();
               $scope.visibleall();
+              $scope.show1();
 
             }
             document.getElementById("grocItem").value = '';
