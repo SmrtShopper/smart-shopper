@@ -186,7 +186,7 @@ angular.module('smartShopper', ["chart.js"])
 
     $scope.welcome = function() {
       //check for mobile web browser (see http://stackoverflow.com/questions/11381673/detecting-a-mobile-browser)
-      if(typeof window.orientation != 'undefined'){
+      if(typeof window.orientation == 'undefined'){
          introJs().start();
       }
     };
