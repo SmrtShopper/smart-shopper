@@ -9,6 +9,7 @@
   <!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/desktop.css">
+  <link href="assets/css/introjs.min.css" rel="stylesheet">
     
 </head>
 <body>
@@ -23,6 +24,7 @@
 <script type="text/javascript" src="assets/js/script.js"></script>
 <script type="text/javascript" src="assets/js/angular-chart.min.js"></script>
 <script type="text/javascript" src="assets/js/groceryItem.js"></script>
+<script type="text/javascript" src="assets/js/intro.min.js"></script>
 
 
 <!-- <script type="text/javascript" src="assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script> -->
@@ -30,14 +32,18 @@
 <script src="node_modules/bootbox/bootbox.min.js"></script>  
 <!-- <script type="text/javascript" src="assets/js/fb.js"></script> -->
 
-<nav class="navbar navbar-default" >
+<nav class="navbar navbar-default" ng-controller="GroceryController" >
   <div class="container-fluid">
     <div class="navbar-header">
        
-      <a class="navbar-brand" href="#">
-          <span class = "glyphicon glyphicon-shopping-cart"></span>
+      <a class="navbar-brand" href="#" data-step="1" data-intro="Welcome to SmartShopper. Grocery lists suck. Lets fix them." data-position='right' >
+          <span class = "glyphicon glyphicon-shopping-cart" ></span>
           Smart Shopper
       </a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="glyphicon glyphicon-question-sign" ng-click = "welcome()"></a></li>
+      </ul>
+
     </div>
   </div>
 </nav>  
@@ -48,9 +54,9 @@
 
 
   
-  <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget">
+  <ul class = "list-group col-xs-12 col-md-6 " id="grocery_widget" data-step="4" data-intro="When you're all done, send your grocery list to your phone. You can come back and update it from any device with a link we send to your phone. No accounts, no personal data, its a grocery list." data-position='right'>
     <li class= "list-group-item active">
-      <span class="list-group-item-heading">Grocery List</span>
+      <span class="list-group-item-heading" >Grocery List</span>
       <span class="btn-group-xs">
         <button id="clear_list" type="button" class="btn btn-default pull-right hover" type="submit" ng-click="clearList()">
           <i class="glyphicon glyphicon-trash"></i>
@@ -63,8 +69,8 @@
 
       </span>
     </li>
-    <li class= "list-group-item"> <!-- Search bar -->
-      <form class="input-group has-feedback ng-scope" ng-submit="search()">
+    <li class= "list-group-item" data-step="2" data-intro="Enter your groceries here. Speak, type its up to YOU." data-position='right'> <!-- Search bar -->
+      <form class="input-group has-feedback ng-scope" ng-submit="search()" >
         <input type="text" class="form-control" ng-model="groceryItem" id="grocItem" placeholder="Search" >      
         <span class="input-group-btn">
           <button id="record_button" type="button" class="btn btn-default" ng-click="voiceRec()">
@@ -98,7 +104,7 @@
 
 
   <div id="charts" class="col-xs-12 col-md-6 col-offset-3">
-    <div id="chart-wrapper">
+    <div id="chart-wrapper" data-step="3" data-intro="Want a balanced diet? Add something to your list and we will show you nutition facts about your groceries (as compared to a balanced diet)." data-position='left'>
       <div id="chart-buttons" class="btn-group btn-group-lg">
         <button type="button" class="btn btn-default" ng-click="show1()">Macronutrients</button>
         <button type="button" class="btn btn-default" ng-click="show2()">Vitamins</button>
@@ -184,11 +190,7 @@
   
 </div> -->
 
-
-
 </div>
-
-
 
 </body>
 
