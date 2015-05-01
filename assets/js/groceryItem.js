@@ -59,16 +59,16 @@ angular.module('smartShopper', ["chart.js"])
       for (var i = 0; i < radar_labels.length; i++) {
         if (i < radar1size) {
           $scope.nutrients1[i] = radar_labels[i];
-          $scope.labels1[i] = radar_labels[i].name + ", " + radar_labels[i].unit;
+          $scope.labels1[i] = "% " + radar_labels[i].name;
         }
         else if (i < radar1size + radar2size) {
           $scope.nutrients2[i - radar1size] = radar_labels[i];
-          $scope.labels2[i - radar1size] = radar_labels[i].name + ", " + radar_labels[i].unit;
+          $scope.labels2[i - radar1size] = "% " + radar_labels[i].name;
         }
         else if (i < radar1size + radar2size + radar3size) {
           var offset = radar2size + radar3size;
           $scope.nutrients3[i - offset] = radar_labels[i];
-          $scope.labels3[i - offset] = radar_labels[i].name + ", " + radar_labels[i].unit;
+          $scope.labels3[i - offset] = "% " + radar_labels[i].name;
         }
 
       }
