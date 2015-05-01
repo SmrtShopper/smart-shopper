@@ -70,6 +70,25 @@ and (max-width: 600px) {
   text-align: center;
 }
 
+.detailsWrapper {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.detailsWrapper div {
+  display: inline-block;
+}
+
+.labelSection {
+  text-align: right;
+}
+
+.dataSection {
+  padding-left: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
 #chart-buttons {
   display: inline-block;
   margin-bottom: 15px;

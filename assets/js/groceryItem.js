@@ -1,13 +1,5 @@
 angular.module('smartShopper', ["chart.js"])
   .controller('GroceryController', ['$scope', function($scope, ModalService) {
-    // $scope.items = [
-    //   {fields:{item_name:'ice cream', bought: true, quantity: 3}},
-    //   {fields:{item_name:'milk', bought: false, quantity: 5}}
-    // ];
-    // $scope.searchResults = [
-    //   {fields:{item_name: 'cheese'}},
-    //   {fields:{item_name: 'broccoli'}}
-    // ];
 
 
     $scope.initializeGraphs = function() {
@@ -188,7 +180,7 @@ angular.module('smartShopper', ["chart.js"])
             })
             .fail (function (response,status){
                console.log(status)
-               bootbox.alert("setupid Server Down!");
+               bootbox.alert("Server Down!");
             });
 
       } else {
@@ -198,15 +190,6 @@ angular.module('smartShopper', ["chart.js"])
       
       console.log($scope.id);
       console.log(radar_labels);
-
-      // $scope.data1 = [
-      //   [1, 2, 5, 2, 7],
-      //   [5, 3, 4, 2, 8]
-      // ];
-
-      // $scope.labels1 = ["a", "b", "c", "d", "e"];
-
-
 
     };
    
@@ -230,7 +213,7 @@ angular.module('smartShopper', ["chart.js"])
           console.log("done getuid");
       })
       .fail (function (response,status){
-         bootbox.alert("getuid Server Down!");
+         bootbox.alert("Server Down!");
       });
 
     };
@@ -258,7 +241,7 @@ angular.module('smartShopper', ["chart.js"])
               $scope.setupID();
           })
           .fail (function (response,status){
-             bootbox.alert("init Server Down!");
+             bootbox.alert("Server Down!");
       });
     } else {
       console.log("No ID in URL");
@@ -296,72 +279,11 @@ angular.module('smartShopper', ["chart.js"])
         
       })
       .fail (function (response,status){
-         bootbox.alert("search Server Down!");
+         bootbox.alert("Server Down!");
       });
       document.getElementById("grocItem").value = '';
 
     };
-
-    // $scope.getTotals = function(query) {
-    //   var allitemstr = query + "\n";
-    //   if ($scope.alldata.results) {
-    //     for (var i = 0; i < $scope.alldata.results.length; i++) {
-    //     allitemstr += $scope.alldata.results[i].parsed_query.query + "\n";
-    //     }
-    //   }
-
-    //   var appId = "feab83eb";
-    //   var appKey = "ecc75d64bf6a77ba3f03d478d4ee943e";
-    //   //search Nutritionix for search results...
-
-    //   $.ajax({
-    //         type: "POST",
-    //         url: "https://grocery-server.herokuapp.com/addGrocery/",
-    //         data: {login: uid, grocery: allitemstr},
-    //         dataType: "text"
-    //       })
-    //   .done (function(response, status){
-    //     alldata = JSON.parse(response);
-    //     if (alldata.errors == null){
-    //       $scope.alldata = alldata;
-    //       $scope.updateGraphs();
-    //       $scope.$digest();
-    //       document.getElementById("grocItem").value = '';
-    //     }
-    //     else {
-    //       bootbox.alert("No results found!");
-    //     }
-        
-    //   })
-    //   .fail (function (response,status){
-    //      bootbox.alert("Server Down!");
-    //   });
-      // xmlhttp = new XMLHttpRequest();
-      // xmlhttp.open("POST","https://api.nutritionix.com/v2/natural/",true);
-      // xmlhttp.setRequestHeader("X-APP-ID", appId);
-      // xmlhttp.setRequestHeader("X-APP-KEY", appKey);
-      // xmlhttp.setRequestHeader("Content-Type", "text/plain");
-      //   if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 200){
-      //     alldata = JSON.parse(xmlhttp.responseText);
-
-      //     // $scope.alldata = $scope.alldata.map(function(data) {
-      //     //   return data.map(function (y) {
-      //     //     console.log(y);
-      //     //     return y;
-      //     //   });
-      //     // });
-
-
-      //     $scope.alldata = alldata;
-      //     $scope.updateGraphs();
-      //     $scope.$digest();
-      //     document.getElementById("grocItem").value = '';
-      //     localStorage.setItem("grocery", JSON.stringify($scope.alldata));
-      //   } else if (xmlhttp && xmlhttp.readyState == 4 && xmlhttp.status == 400){
-      //       bootbox.alert("No results found!");
-      //       return;
-      //   }
-    // };
 
     $scope.sendtophone = function(){
       num = localStorage.getItem("phone");
@@ -396,13 +318,10 @@ angular.module('smartShopper', ["chart.js"])
           }
         }
       });
-
-      
     };
 
 
     $scope.updateGraphs = function(){
-      console.log("UPDATE GRAPHS");
       if ($scope.alldata && $scope.alldata.total) {
         console.log($("#radar1 .panel-body p"));
         $("#radar1 .panel-body p").remove();
@@ -420,7 +339,6 @@ angular.module('smartShopper', ["chart.js"])
     });
 
     function updateRadar(nutrientsData, data, nutrients_to_use, label, id) {
-      console.log("UPDATE RADAR");
       if (!nutrientsData) {
         //do something here to indicate no data and prompt to add data
         alert("NO DATA");
@@ -435,7 +353,6 @@ angular.module('smartShopper', ["chart.js"])
             break;
           }
         }
-        console.log("total calories: " + totalCalories);
 
         // create goal data and user's data
         for (var i = 0; i < nutrients_to_use.length; i++) {
@@ -447,8 +364,8 @@ angular.module('smartShopper', ["chart.js"])
               userData = parseFloat((100*userData).toFixed(2));
               data[0].push(100);
               data[1].push(userData);
-              console.log(calculateColor(userData));
-              $("#radar"+id+" .panel-body").append("<p>"+label[i].substring(2)+": <span style='color:"+calculateColor(userData)+"'>"+userData+"</span>"+"%</p>");
+              $("#radar"+id+" .labelSection").append("<p>"+label[i].substring(2)+":</p>");
+              $("#radar"+id+" .dataSection").append("<p><span style='color:"+calculateColor(userData)+"'>"+userData+"</span>"+"%</p>");
             }
           }
         }
@@ -459,7 +376,7 @@ angular.module('smartShopper', ["chart.js"])
     }
 
     function calculateColor(data) {
-      var red = Math.abs(data*5.1-510);
+      var red = Math.abs(parseInt(data*5.1-510));
       if (red > 255) {
         red = 255;
       }
@@ -516,7 +433,7 @@ angular.module('smartShopper', ["chart.js"])
         
       })
       .fail (function (response,status){
-         bootbox.alert("deleteitem Server Down!");
+         bootbox.alert("Server Down!");
       });
       
     };
@@ -556,7 +473,7 @@ angular.module('smartShopper', ["chart.js"])
         
       })
       .fail (function (response,status){
-         bootbox.alert("clearlist Server Down!");
+         bootbox.alert("Server Down!");
       });
     };
 
